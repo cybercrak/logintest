@@ -46,9 +46,7 @@ private fun Login() {
     Column(modifier = Modifier.fillMaxSize() ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
-        Image(
-            ImageBitmap.imageResource(id = R.drawable.login),contentDescription = ""
-        )
+
 
         var email by remember { mutableStateOf("")}
         OutlinedTextField(
