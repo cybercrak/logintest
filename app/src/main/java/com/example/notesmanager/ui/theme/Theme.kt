@@ -16,11 +16,11 @@ private val LightColorPalette = lightColors(
     primary = DarkYellow,
     primaryVariant = Yellow,
     secondary = Teal200,
-    background = Blue
+    background = Ivory
     /* Other default colors to override
-    background = Color.White,
-    surface = Color.White,
-    onPrimary = Color.White,
+    background = Color.Ivory,
+    surface = Color.Ivory,
+    onPrimary = Color.Ivory,
     onSecondary = Color.Black,
     onBackground = Color.Black,
     onSurface = Color.Black,

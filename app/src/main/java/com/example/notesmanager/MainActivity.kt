@@ -1,10 +1,10 @@
 package com.example.notesmanager
 
-import android.content.Context
+
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -13,8 +13,13 @@ import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.notesmanager.ui.theme.NotesManagerTheme
 
@@ -26,7 +31,7 @@ class MainActivity : ComponentActivity() {
             NotesManagerTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Login()
+                    Navigation()
                 }
             }
         }
@@ -34,12 +39,35 @@ class MainActivity : ComponentActivity() {
 
 }
 @Composable
-private fun Login() {
+fun Navigation(){
     val navController = rememberNavController()
+
+    NavHost(navController = navController,startDestination = "login"){
+        composable("login"){ Login(navController= navController)}
+        composable("logout"){ Logout(navController= navController)}
+
+    }
+}
+
+@Composable
+fun Logout(navController: NavHostController) {
+
+    Column(modifier = Modifier.fillMaxSize(),
+    verticalArrangement = Arrangement.Center,
+     horizontalAlignment = Alignment.CenterHorizontally){
+        Button(onClick = { navController.navigate("login") }) {
+            Text(text = "Logout")
+        }
+    }
+}
+
+@Composable
+private fun Login(navController: NavHostController) {
+
     Column(modifier = Modifier.fillMaxSize() ,
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally){
-
+        Image(ImageBitmap.imageResource(id=R.drawable.login),contentDescription = "")
 
         var email by remember { mutableStateOf("")}
         OutlinedTextField(
@@ -64,9 +92,7 @@ private fun Login() {
         )
 
         Spacer(modifier = Modifier.padding(20.dp))
-
-        fun Context.toast(message: CharSequence)=Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
-        Button(onClick={ fun txt(context: Context){context.toast("Available soon")}
+        Button(onClick={ navController.navigate("logout")
         } ,  shape = RoundedCornerShape(50)
         ){
             Text("LOGIN")
@@ -78,7 +104,7 @@ private fun Login() {
 @Composable
 fun DefaultPreview() {
     NotesManagerTheme {
-        Login()
+        Navigation()
     }
 }
 
