@@ -1,7 +1,13 @@
 package com.example.notesmanager
 
+import android.annotation.SuppressLint
+import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.view.ViewGroup
+import android.webkit.*
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -19,6 +25,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -26,6 +33,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -68,12 +77,19 @@ class MainActivity : ComponentActivity() {
 fun Navigation(){
     val navController = rememberNavController()
 
-    NavHost(navController = navController,startDestination = "login"){ 
+    NavHost(navController = navController,startDestination = "login"){
+        composable("signin"){ Signin(navController= navController)}
         composable("login"){ Login(navController= navController)}
         composable("Main"){ MainScreen(navController= navController)}
+        composable("cms"){ CMSscreen(navController= navController)}
+        composable("fee"){ Fee(navController= navController)}
+        composable("result"){ Result(navController= navController)}
 
     }
 }
+
+
+
 
 //@Composable
 //fun Logout(navController: NavHostController) {
@@ -86,7 +102,73 @@ fun Navigation(){
 //        }
 //    }
 //}
+@Composable
+private fun Signin(navController: NavHostController/*,viewModel: LoginScreenViewModel = viewModel()*/) {
+    //val state by viewModel.loadingState.collectAsState()
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
 
+        var email by remember { mutableStateOf("") }
+        OutlinedTextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email") },
+            maxLines = 1,
+            singleLine = true,
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Filled.Email,
+                    contentDescription = "Email Icon"
+                )
+            })
+        var password by remember { mutableStateOf("") }
+        OutlinedTextField(
+            value = password,
+            maxLines = 1,
+            singleLine = true,
+            onValueChange = { password = it },
+            label = { Text("Password") }
+        )
+        var cpassword by remember { mutableStateOf("") }
+        OutlinedTextField(
+            value = cpassword,
+            maxLines = 1,
+            singleLine = true,
+            onValueChange = { cpassword = it },
+            label = { Text("Confirm Password") }
+        )
+
+        Spacer(modifier = Modifier.padding(20.dp))
+        if (password == cpassword) {
+            Button(
+                onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
+                    navController.navigate("Login")
+                }, shape = RoundedCornerShape(20)
+            ) {
+                Text("SIGN IN")
+//            when(state.status){
+//                LoadingState.Status.SUCCESS -> {Text(text = "Success")}
+//                LoadingState.Status.FAILED -> {Text(text = state.msg ?: "Error")}
+//
+//            }
+            }
+        }else{
+            val context = LocalContext.current
+            Toast.makeText(
+                context,"Enter password correctly",Toast.LENGTH_SHORT).show()
+        }
+    }
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text("Create Account", textAlign = TextAlign.Center)
+    }
+}
 @Composable
 private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewModel = viewModel()*/) {
     //val state by viewModel.loadingState.collectAsState()
@@ -95,7 +177,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(ImageBitmap.imageResource(id = R.drawable.login), contentDescription = "")
+        Image(ImageBitmap.imageResource(id = R.drawable.login), contentDescription = "",alignment = Alignment.TopCenter)
 
         var email by remember { mutableStateOf("") }
         OutlinedTextField(
@@ -135,7 +217,9 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
     }
 }
 
-    @ExperimentalFoundationApi
+
+
+@ExperimentalFoundationApi
     @Composable
     fun MainScreen(navController: NavHostController) {
         val images = (0..7).toList()
@@ -144,134 +228,219 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
             contentPadding = PaddingValues(15.dp),
         ) {
             item {
+                Column(modifier = Modifier.fillMaxSize(),
+                horizontalAlignment =  Alignment.CenterHorizontally) {
+                    Image(ImageBitmap.imageResource(id = R.drawable.calc),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(100.dp)
+                            .padding(15.dp)
+                            .clickable(
+                                onClick = { navController.navigate("login") }
+                            )
+                    )
+                    Text(
+                        "Percentage Calculator",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center,
 
-                Image(ImageBitmap.imageResource(id = R.drawable.calculator),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
-                        .padding(15.dp)
-                        .clickable(
-                            onClick = { navController.navigate("login") }
                         )
-                )
-                Text(
-                    "Percentage Calculator",
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                )
+                }
             }
             item {
-                Image(ImageBitmap.imageResource(id = R.drawable.books),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
-                        .padding(15.dp)
-                        .clickable(
-                            onClick = { navController.navigate("login") }
-                        )
-                )
-                Text(
-                    "Notes",
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                )
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(ImageBitmap.imageResource(id = R.drawable.archives_77899),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(100.dp)
+                            .padding(15.dp)
+                            .clickable(
+                                onClick = { navController.navigate("login") }
+                            )
+
+                    )
+                    Text(
+                        "Notes",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
             item {
-                Image(ImageBitmap.imageResource(id = R.drawable.calculator_1_),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
-                        .padding(15.dp)
-                        .clickable(
-                            onClick = { navController.navigate("login") }
-                        )
-                )
-                Text(
-                    "Uploads",
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                )
+                Column(modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment =  Alignment.CenterHorizontally) {
+                    Image(ImageBitmap.imageResource(id = R.drawable.uploads),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(100.dp)
+                            .padding(15.dp)
+                            .clickable(
+                                onClick = {
+                                    navController.navigate("login")
+
+                                }
+                            )
+                    )
+                    Text(
+                        "Uploads",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
             item {
-                Image(ImageBitmap.imageResource(id = R.drawable.interest_rate),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
-                        .padding(15.dp)
-                        .clickable(
-                            onClick = { navController.navigate("login") }
-                        )
-                )
-                Text(
-                    "Fee",
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                )
+                Column(modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment =  Alignment.CenterHorizontally) {
+                    Image(ImageBitmap.imageResource(id = R.drawable.fee),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(100.dp)
+                            .padding(15.dp)
+                            .clickable(
+                                onClick = { navController.navigate("fee") }
+                            )
+                    )
+                    Text(
+                        "Fee",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
             item {
-                Image(ImageBitmap.imageResource(id = R.drawable.calculator),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
-                        .padding(15.dp)
-                        .clickable(
-                            onClick = { navController.navigate("login") }
-                        )
-                )
-                Text(
-                    "Result",
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                )
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    val intent = Intent(Intent.ACTION_VIEW,
+                        Uri.parse("https://mis.srcas.ac.in/SNRApp"))
+                    val context = LocalContext.current
+                    Image(ImageBitmap.imageResource(id = R.drawable.cms1),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(100.dp)
+                            .padding(15.dp)
+                            .clickable(
+                                onClick = {
+                                    startActivity(context, intent,null)
+                                    }
+                            )
+                    )
+                    Text(
+                        "MIS",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
 
             item {
-                Image(ImageBitmap.imageResource(id = R.drawable.books),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
-                        .padding(15.dp)
-                        .clickable(
-                            onClick = { navController.navigate("login") }
-                        )
-                )
-                Text(
-                    "Cms",
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                )
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Image(ImageBitmap.imageResource(id = R.drawable.questionbank),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(100.dp)
+                            .padding(15.dp)
+                            .clickable(
+                                onClick = { navController.navigate("cms") }
+                            )
+                    )
+                    Text(
+                        "Question Bank",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
             item {
-                Image(ImageBitmap.imageResource(id = R.drawable.calculator_1_),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
-                        .padding(15.dp)
-                        .clickable(
-                            onClick = { navController.navigate("login") }
-                        )
-                )
-                Text(
-                    "Result",
-                    fontSize = 12.sp,
-                    textAlign = TextAlign.Center
-                )
+                Column(modifier = Modifier.fillMaxSize(),
+                    horizontalAlignment =  Alignment.CenterHorizontally) {
+                    Image(ImageBitmap.imageResource(id = R.drawable.result),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .width(100.dp)
+                            .height(100.dp)
+                            .padding(15.dp)
+                            .clickable(
+                                onClick = { navController.navigate("result") }
+                            )
+                    )
+                    Text(
+                        "Result",
+                        fontSize = 12.sp,
+                        textAlign = TextAlign.Center
+                    )
+                }
             }
 
                 }
             }
 
 
+@SuppressLint("SetJavaScriptEnabled")
+@Composable
+fun CMSscreen(navController: NavHostController){
+    AndroidView(factory = {
+        WebView(it).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            webViewClient = WebViewClient()
+            loadUrl("http://mis.srcas.ac.in/SNRApp/dist/account/signin?returnurl=%2Fsnrapp")
+        }
+    } ,update = {
+        it.loadUrl("http://mis.srcas.ac.in/SNRApp/dist/account/signin?returnurl=%2Fsnrapp")
+    })
+}
 
 
+@SuppressLint("SetJavaScriptEnabled",)
+@Composable
+fun Fee(navController: NavHostController){
+    AndroidView(factory = {
+        WebView(it).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            webViewClient = WebViewClient()
+            loadUrl("https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment")
+        }
+    } ,update = {
+        it.loadUrl("https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment")
+    })
+}
 
+
+@SuppressLint("SetJavaScriptEnabled")
+@Composable
+fun Result(navController: NavHostController){
+    AndroidView(factory = {
+        WebView(it).apply {
+            layoutParams = ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+            webViewClient = WebViewClient()
+            loadUrl("http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults")
+        }
+    } ,update = {
+        it.loadUrl("http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults")
+    })
+}
 
 
 
