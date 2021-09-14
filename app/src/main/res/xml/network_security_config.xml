@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <network-security-config>
-   <base-config cleartextTrafficPermitted="true"/>
+  <base-config cleartextTrafficPermitted="true">
+    <trust-anchors>
+      <certificates src="system" />
+    </trust-anchors>
+  </base-config>
+  <domain-config>
+    <domain includeSubdomains="true">http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults</domain>
+  </domain-config>
 </network-security-config>

@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import android.webkit.*
 import android.widget.Toast
@@ -59,12 +60,14 @@ class MainActivity : ComponentActivity() {
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //auth = Firebase.auth
         setContent {
             NotesManagerTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
+
                     Navigation()
+
+
                 }
             }
         }
@@ -77,22 +80,19 @@ class MainActivity : ComponentActivity() {
 fun Navigation(){
     val navController = rememberNavController()
 
-    NavHost(navController = navController,startDestination = "login"){
+    NavHost(navController = navController,startDestination = "signin"){
         composable("signin"){ Signin(navController= navController)}
         composable("login"){ Login(navController= navController)}
         composable("Main"){ MainScreen(navController= navController)}
-        composable("cms"){ CMSscreen(navController= navController)}
-        composable("fee"){ Fee(navController= navController)}
-        composable("result"){ Result(navController= navController)}
-
+        composable("Calc"){ CalcScreen(navController= navController)}
+       // composable("cms"){ CMSscreen(navController= navController)}
+       // composable("fee"){ Fee(navController= navController)}
+       // composable("result"){ Result(navController= navController)}
     }
 }
 
 
-
-
-//@Composable
-//fun Logout(navController: NavHostController) {
+//fun userRegistration(navController: NavHostController) {
 //
 //    Column(modifier = Modifier.fillMaxSize(),
 //    verticalArrangement = Arrangement.Center,
@@ -101,10 +101,19 @@ fun Navigation(){
 //            Text(text = "Logout")
 //        }
 //    }
+
+//}
+//fun Signuplogic() {
+//    var auth = FirebaseAuth.getInstance()
+//    val email = email.text.toString()
+//    val password = password.text.toString()
+//    var Cpassword =  cpassword.text.toString()
+//    auth.createUserWithEmailAndPassword(email, Cpassword)
 //}
 @Composable
 private fun Signin(navController: NavHostController/*,viewModel: LoginScreenViewModel = viewModel()*/) {
     //val state by viewModel.loadingState.collectAsState()
+    var auth = FirebaseAuth.getInstance()
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -142,9 +151,12 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
         )
 
         Spacer(modifier = Modifier.padding(20.dp))
+
+
         if (password == cpassword) {
             Button(
                 onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
+
                     navController.navigate("Login")
                 }, shape = RoundedCornerShape(20)
             ) {
@@ -169,6 +181,7 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
         Text("Create Account", textAlign = TextAlign.Center)
     }
 }
+
 @Composable
 private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewModel = viewModel()*/) {
     //val state by viewModel.loadingState.collectAsState()
@@ -237,7 +250,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                             .height(100.dp)
                             .padding(15.dp)
                             .clickable(
-                                onClick = { navController.navigate("login") }
+                                onClick = { navController.navigate("Calc") }
                             )
                     )
                     Text(
@@ -297,6 +310,11 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
             item {
                 Column(modifier = Modifier.fillMaxSize(),
                     horizontalAlignment =  Alignment.CenterHorizontally) {
+                    val intent = Intent(Intent.ACTION_VIEW,
+                        Uri.parse(
+                            "https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment")
+                    )
+                    val context = LocalContext.current
                     Image(ImageBitmap.imageResource(id = R.drawable.fee),
                         contentDescription = "",
                         modifier = Modifier
@@ -304,7 +322,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                             .height(100.dp)
                             .padding(15.dp)
                             .clickable(
-                                onClick = { navController.navigate("fee") }
+                                onClick = { startActivity(context, intent, null) }
                             )
                     )
                     Text(
@@ -330,8 +348,8 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                             .padding(15.dp)
                             .clickable(
                                 onClick = {
-                                    startActivity(context, intent,null)
-                                    }
+                                    startActivity(context, intent, null)
+                                }
                             )
                     )
                     Text(
@@ -354,7 +372,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                             .height(100.dp)
                             .padding(15.dp)
                             .clickable(
-                                onClick = { navController.navigate("cms") }
+                                onClick = { navController.navigate("login") }
                             )
                     )
                     Text(
@@ -367,6 +385,11 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
             item {
                 Column(modifier = Modifier.fillMaxSize(),
                     horizontalAlignment =  Alignment.CenterHorizontally) {
+                    val intent = Intent(Intent.ACTION_VIEW,
+                        Uri.parse(
+                            "http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults")
+                    )
+                    val context = LocalContext.current
                     Image(ImageBitmap.imageResource(id = R.drawable.result),
                         contentDescription = "",
                         modifier = Modifier
@@ -374,7 +397,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                             .height(100.dp)
                             .padding(15.dp)
                             .clickable(
-                                onClick = { navController.navigate("result") }
+                                onClick = { startActivity(context, intent, null) }
                             )
                     )
                     Text(
@@ -387,60 +410,71 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 
                 }
             }
-
-
-@SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun CMSscreen(navController: NavHostController){
-    AndroidView(factory = {
-        WebView(it).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            webViewClient = WebViewClient()
-            loadUrl("http://mis.srcas.ac.in/SNRApp/dist/account/signin?returnurl=%2Fsnrapp")
-        }
-    } ,update = {
-        it.loadUrl("http://mis.srcas.ac.in/SNRApp/dist/account/signin?returnurl=%2Fsnrapp")
-    })
+fun CalcScreen(navController: NavHostController) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+
+        Text("Available Soon")
+
+    }
 }
 
+//@SuppressLint("SetJavaScriptEnabled")
+//@Composable
+//fun CMSscreen(navController: NavHostController){
+//    AndroidView(factory = {
+//        WebView(it).apply {
+//            layoutParams = ViewGroup.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT
+//            )
+//            webViewClient = WebViewClient()
+//            loadUrl("http://mis.srcas.ac.in/SNRApp/dist/account/signin?returnurl=%2Fsnrapp")
+//        }
+//    } ,update = {
+//        it.loadUrl("http://mis.srcas.ac.in/SNRApp/dist/account/signin?returnurl=%2Fsnrapp")
+//    })
+//}
 
-@SuppressLint("SetJavaScriptEnabled",)
-@Composable
-fun Fee(navController: NavHostController){
-    AndroidView(factory = {
-        WebView(it).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            webViewClient = WebViewClient()
-            loadUrl("https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment")
-        }
-    } ,update = {
-        it.loadUrl("https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment")
-    })
-}
+
+//@SuppressLint("SetJavaScriptEnabled",)
+//@Composable
+//fun Fee(navController: NavHostController){
+//    AndroidView(factory = {
+//        WebView(it).apply {
+//            layoutParams = ViewGroup.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT
+//            )
+//            webViewClient = WebViewClient()
+//            loadUrl("https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment")
+//        }
+//    } ,update = {
+//        it.loadUrl("https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment")
+//    })
+//}
 
 
-@SuppressLint("SetJavaScriptEnabled")
-@Composable
-fun Result(navController: NavHostController){
-    AndroidView(factory = {
-        WebView(it).apply {
-            layoutParams = ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-            webViewClient = WebViewClient()
-            loadUrl("http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults")
-        }
-    } ,update = {
-        it.loadUrl("http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults")
-    })
-}
+//@SuppressLint("SetJavaScriptEnabled")
+//@Composable
+//fun Result(navController: NavHostController){
+//    AndroidView(factory = {
+//        WebView(it).apply {
+//            layoutParams = ViewGroup.LayoutParams(
+//                ViewGroup.LayoutParams.MATCH_PARENT,
+//                ViewGroup.LayoutParams.MATCH_PARENT
+//            )
+//            webViewClient = WebViewClient()
+//            loadUrl("http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults")
+//        }
+//    } ,update = {
+//        it.loadUrl("http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults")
+//    })
+//}
 
 
 
@@ -483,6 +517,7 @@ fun DefaultPreview() {
         Navigation()
     }
 }
+
 
 
 
