@@ -11,6 +11,8 @@ import android.webkit.*
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
@@ -51,8 +53,8 @@ import com.google.firebase.ktx.Firebase
 //import kotlinx.coroutines.launch
 //import kotlinx.coroutines.tasks.await
 import androidx.lifecycle.viewmodel.compose.viewModel
-
-
+import com.example.notesmanager.ui.theme.Notes
+import androidx.compose.runtime.*
 
 
 class MainActivity : ComponentActivity() {
@@ -85,6 +87,7 @@ fun Navigation(){
         composable("login"){ Login(navController= navController)}
         composable("Main"){ MainScreen(navController= navController)}
         composable("Calc"){ CalcScreen(navController= navController)}
+        composable("notes"){ Notes(navController= navController)}
        // composable("cms"){ CMSscreen(navController= navController)}
        // composable("fee"){ Fee(navController= navController)}
        // composable("result"){ Result(navController= navController)}
@@ -182,16 +185,20 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
     }
 }
 
+
 @Composable
 private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewModel = viewModel()*/) {
     //val state by viewModel.loadingState.collectAsState()
+//    val animationSpec = remember{LottieAnimationSpec.RawRes(R.raw.Loginanim)}
+//    val animationState = rememberLottieAnimationState(autoplay= true, repeatCount = Integer.MAX_VALUE)
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(ImageBitmap.imageResource(id = R.drawable.login), contentDescription = "",alignment = Alignment.TopCenter)
-
+         Image(ImageBitmap.imageResource(id = R.drawable.login), contentDescription = "",alignment = Alignment.TopCenter)
+       // LottieAnimation(animationSpec,animationState=animationState)
+//
         var email by remember { mutableStateOf("") }
         OutlinedTextField(
             value = email,
@@ -217,7 +224,24 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
         Spacer(modifier = Modifier.padding(20.dp))
         Button(
             onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
-                navController.navigate("Main")
+//                if(email.isNotEmpty() && password.isNotEmpty()){
+//                    CoroutinesScope(Dispatcher.IO).launch{
+//                        try{
+//                            auth.signInWithEmailAndPassword(email,password).await()
+//                            withContext(Dispatchers.Main){
+//                                Toast.makeText(context,"Login Successfull",Toast.LENGTH_SHORT).show()
+                                navController.navigate("Main")
+//                            }
+//                        } catch(e.Exception){
+//                            withContext(Dispatcher.Main){
+//                                Toast.makeText(context,"Credentials Mismatch",Toast.LENGTH_SHORT).show()
+//                            }
+//                        }
+//                    }
+//                }else{
+//                    Toast.makeText(context,"Enter Valid Credentials",Toast.LENGTH_SHORT).show()
+//                }
+                
             }, shape = RoundedCornerShape(50)
         ){
             Text("LOGIN")
@@ -242,7 +266,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
         ) {
             item {
                 Column(modifier = Modifier.fillMaxSize(),
-                horizontalAlignment =  Alignment.CenterHorizontally) {
+                horizontalAlignment =  Alignment.CenterHorizontally){
                     Image(ImageBitmap.imageResource(id = R.drawable.calc),
                         contentDescription = "",
                         modifier = Modifier
@@ -273,7 +297,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                             .height(100.dp)
                             .padding(15.dp)
                             .clickable(
-                                onClick = { navController.navigate("login") }
+                                onClick = { navController.navigate("notes") }
                             )
 
                     )
