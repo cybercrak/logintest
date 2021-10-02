@@ -13,22 +13,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd967de9-6caa-4f2d-9d90-c7df3af3d65c" name="Default Changelist" comment="Signup screens and main screen stuffs">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/ui/theme/Notes.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bca.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/it.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/logingif.gif" afterDir="false" />
+    <list default="true" id="fd967de9-6caa-4f2d-9d90-c7df3af3d65c" name="Default Changelist" comment="Error fix">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/Uploads.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/Uploadsbackend.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[b31df73]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -39,8 +36,9 @@
       <list>
         <option value="valueResourceFile" />
         <option value="resourceFile" />
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -73,6 +71,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/raw" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/ui/theme" />
     </key>
   </component>
   <component name="RunManager">
@@ -165,7 +166,14 @@
       <option name="project" value="LOCAL" />
       <updated>1630491851817</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="backup">
+      <created>1633104640454</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1633104640454</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -184,6 +192,8 @@
     <MESSAGE value="Added main screen with grid layout" />
     <MESSAGE value="Signup screens and main screen sfuffs" />
     <MESSAGE value="Signup screens and main screen stuffs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Signup screens and main screen stuffs" />
+    <MESSAGE value="backup" />
+    <MESSAGE value="Error fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error fix" />
   </component>
 </project>

@@ -74,4 +74,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth'
     // For Google Analytics
     implementation 'com.google.firebase:firebase-analytics'
+    // For Firestore
+    implementation 'com.google.firebase:firebase-firestore-ktx'
 }

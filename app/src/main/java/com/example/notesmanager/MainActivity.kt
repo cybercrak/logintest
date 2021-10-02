@@ -88,7 +88,8 @@ fun Navigation(){
         composable("Main"){ MainScreen(navController= navController)}
         composable("Calc"){ CalcScreen(navController= navController)}
         composable("notes"){ Notes(navController= navController)}
-       // composable("cms"){ CMSscreen(navController= navController)}
+        composable("upload"){ Upload(navController= navController)}
+        // composable("cms"){ CMSscreen(navController= navController)}
        // composable("fee"){ Fee(navController= navController)}
        // composable("result"){ Result(navController= navController)}
     }
@@ -319,7 +320,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                             .padding(15.dp)
                             .clickable(
                                 onClick = {
-                                    navController.navigate("login")
+                                    navController.navigate("upload")
 
                                 }
                             )
