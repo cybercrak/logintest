@@ -51,10 +51,13 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 //import kotlinx.coroutines.flow.MutableStateFlow
 //import kotlinx.coroutines.launch
-//import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.tasks.await
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.notesmanager.ui.theme.Notes
 import androidx.compose.runtime.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainActivity : ComponentActivity() {
@@ -156,16 +159,17 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
 
         Spacer(modifier = Modifier.padding(20.dp))
 
-
         if (password == cpassword) {
             Button(
                 onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
-
-                    navController.navigate("Login")
+                    CoroutineScope(Dispatchers.IO).launch {
+                        auth.createUserWithEmailAndPassword(email, cpassword).await()
+                        navController.navigate("Main")
+                    }
                 }, shape = RoundedCornerShape(20)
-            ) {
+                ){
                 Text("SIGN IN")
-//            when(state.status){
+//                when(state.status){
 //                LoadingState.Status.SUCCESS -> {Text(text = "Success")}
 //                LoadingState.Status.FAILED -> {Text(text = state.msg ?: "Error")}
 //

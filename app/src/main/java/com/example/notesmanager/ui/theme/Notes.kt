@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -39,12 +40,12 @@ fun Notes(navController: NavHostController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
-                    ImageBitmap.imageResource(id = R.drawable.bca),
+                    painter = painterResource(id =R.drawable.bca),
                     contentDescription = "",
                     modifier = Modifier
                         .width(100.dp)
                         .height(100.dp)
-                        .padding(top = 40.dp,start = 10.dp)
+                        .padding(top = 40.dp)
                         .clickable(
                             onClick = {
                                 Toast
@@ -59,13 +60,77 @@ fun Notes(navController: NavHostController) {
                 Text(
                     "BCA",
                     fontSize = 12.sp,
-                    modifier = Modifier.padding(14.dp)
-                )
+                    textAlign = TextAlign.Center
+                    )
             }
         }
 
         item {
-            Spacer(modifier = Modifier.height(10.dp))
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(id =R.drawable.bsc),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(top = 40.dp)
+                        .clickable(
+                            onClick = {
+                                Toast
+                                    .makeText(
+                                        context, "Available soon", Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                            }
+                        )
+                )
+
+                Text(
+                    "BSC",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+
+                    )
+            }
+        }
+        item {
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    ImageBitmap.imageResource(id = R.drawable.bca1),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(top = 40.dp)
+                        .clickable(
+                            onClick = {
+                                Toast
+                                    .makeText(
+                                        context, "Available soon", Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                            }
+                        )
+                )
+
+                Text(
+                    "BCA",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+
+                    )
+            }
+        }
+        item {
+
             Column(
                 modifier = Modifier.fillMaxSize(),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -76,7 +141,7 @@ fun Notes(navController: NavHostController) {
                     modifier = Modifier
                         .width(100.dp)
                         .height(100.dp)
-                        .padding(top = 30.dp,start = 15.dp)
+                        .padding(top = 40.dp)
                         .clickable(
                             onClick = {
                                 Toast
@@ -91,11 +156,13 @@ fun Notes(navController: NavHostController) {
                 Text(
                     "IT",
                     fontSize = 12.sp,
-                    modifier = Modifier.padding(15.dp)
+                    textAlign = TextAlign.Center
 
-                )
+
+                    )
             }
         }
+
     }
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -113,7 +180,10 @@ fun Notes(navController: NavHostController) {
             "Select Department",
             fontSize = 15.sp,
             color = Color.Blue,
-            fontFamily = FontFamily.Serif
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.Serif,
+            modifier = Modifier.padding(start=3.dp)
+
         )
 
 
