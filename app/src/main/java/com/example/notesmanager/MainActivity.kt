@@ -58,6 +58,7 @@ import androidx.compose.runtime.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class MainActivity : ComponentActivity() {
@@ -120,6 +121,7 @@ fun Navigation(){
 @Composable
 private fun Signin(navController: NavHostController/*,viewModel: LoginScreenViewModel = viewModel()*/) {
     //val state by viewModel.loadingState.collectAsState()
+    val context = LocalContext.current
     var auth = FirebaseAuth.getInstance()
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -163,8 +165,18 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
             Button(
                 onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
                     CoroutineScope(Dispatchers.IO).launch {
-                        auth.createUserWithEmailAndPassword(email, cpassword).await()
-                        navController.navigate("Main")
+                        try {
+                            auth.createUserWithEmailAndPassword(email, cpassword).await()
+                            withContext(Dispatchers.Main) {
+                                navController.navigate("login")
+                                Toast.makeText(
+                                    context,"User Registered",Toast.LENGTH_SHORT).show()
+                            }
+                        } catch(e: Exception){
+                            withContext(Dispatchers.Main) { Toast.makeText(
+                            context,"Error occured",Toast.LENGTH_SHORT).show()
+                            }
+                    }
                     }
                 }, shape = RoundedCornerShape(20)
                 ){
@@ -176,7 +188,7 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
 //            }
             }
         }else{
-            val context = LocalContext.current
+
             Toast.makeText(
                 context,"Enter password correctly",Toast.LENGTH_SHORT).show()
         }
