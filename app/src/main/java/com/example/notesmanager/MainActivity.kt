@@ -16,8 +16,11 @@ import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.Icon
@@ -55,6 +58,12 @@ import kotlinx.coroutines.tasks.await
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.notesmanager.ui.theme.Notes
 import androidx.compose.runtime.*
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.withStyle
+import com.example.notesmanager.ui.theme.DarkRed
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -63,6 +72,7 @@ import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
    // private lateinit var auth: FirebaseAuth
+
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,13 +96,15 @@ class MainActivity : ComponentActivity() {
 fun Navigation(){
     val navController = rememberNavController()
 
-    NavHost(navController = navController,startDestination = "signin"){
+    NavHost(navController = navController,startDestination = "login"){
         composable("signin"){ Signin(navController= navController)}
         composable("login"){ Login(navController= navController)}
         composable("Main"){ MainScreen(navController= navController)}
         composable("Calc"){ CalcScreen(navController= navController)}
         composable("notes"){ Notes(navController= navController)}
         composable("upload"){ Upload(navController= navController)}
+        composable("bcayear") { Bca_yearselection(navController = navController) }
+
         // composable("cms"){ CMSscreen(navController= navController)}
        // composable("fee"){ Fee(navController= navController)}
        // composable("result"){ Result(navController= navController)}
@@ -119,7 +131,7 @@ fun Navigation(){
 //    auth.createUserWithEmailAndPassword(email, Cpassword)
 //}
 @Composable
-private fun Signin(navController: NavHostController/*,viewModel: LoginScreenViewModel = viewModel()*/) {
+private fun Signin(navController: NavHostController/*,viewModel: LoginScreenViewModel = viewModel()*/ ) {
     //val state by viewModel.loadingState.collectAsState()
     val context = LocalContext.current
     var auth = FirebaseAuth.getInstance()
@@ -128,7 +140,6 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
         var email by remember { mutableStateOf("") }
         OutlinedTextField(
             value = email,
@@ -141,14 +152,20 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
                     imageVector = Icons.Filled.Email,
                     contentDescription = "Email Icon"
                 )
-            })
+            },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Email
+        ))
         var password by remember { mutableStateOf("") }
         OutlinedTextField(
             value = password,
             maxLines = 1,
             singleLine = true,
             onValueChange = { password = it },
-            label = { Text("Password") }
+            label = { Text("Password") },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password
+            )
         )
         var cpassword by remember { mutableStateOf("") }
         OutlinedTextField(
@@ -156,30 +173,44 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
             maxLines = 1,
             singleLine = true,
             onValueChange = { cpassword = it },
-            label = { Text("Confirm Password") }
-        )
+            label = { Text("Confirm Password") },
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Password
+            )
+            )
 
         Spacer(modifier = Modifier.padding(20.dp))
 
-        if (password == cpassword) {
+
             Button(
                 onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
                     CoroutineScope(Dispatchers.IO).launch {
-                        try {
+//                        try {
+                        if (password == cpassword) {
                             auth.createUserWithEmailAndPassword(email, cpassword).await()
-                            withContext(Dispatchers.Main) {
-                                navController.navigate("login")
-                                Toast.makeText(
-                                    context,"User Registered",Toast.LENGTH_SHORT).show()
-                            }
-                        } catch(e: Exception){
-                            withContext(Dispatchers.Main) { Toast.makeText(
-                            context,"Error occured",Toast.LENGTH_SHORT).show()
-                            }
-                    }
+//                            withContext(Dispatchers.Main) {
+
+                        navController.navigate("login")
+//                            Toast.makeText(
+//                                context, "User Registered", Toast.LENGTH_SHORT
+//                            ).show()
+
+//                            }
+//                        } catch (e: Exception) {
+//                            withContext(Dispatchers.Main) {
+//                                Toast.makeText(
+//                                    context, "Error occured", Toast.LENGTH_SHORT
+//                                ).show()
+//                            }
+//                        }
+                        }else {
+//                            Toast.makeText(
+//                                context, "Enter password correctly", Toast.LENGTH_SHORT
+//                            ).show()
+                        }
                     }
                 }, shape = RoundedCornerShape(20)
-                ){
+            ) {
                 Text("SIGN IN")
 //                when(state.status){
 //                LoadingState.Status.SUCCESS -> {Text(text = "Success")}
@@ -187,20 +218,17 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
 //
 //            }
             }
-        }else{
 
-            Toast.makeText(
-                context,"Enter password correctly",Toast.LENGTH_SHORT).show()
+        }
+
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Create Account", textAlign = TextAlign.Center)
         }
     }
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Top,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        Text("Create Account", textAlign = TextAlign.Center)
-    }
-}
 
 
 @Composable
@@ -208,46 +236,61 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
     //val state by viewModel.loadingState.collectAsState()
 //    val animationSpec = remember{LottieAnimationSpec.RawRes(R.raw.Loginanim)}
 //    val animationState = rememberLottieAnimationState(autoplay= true, repeatCount = Integer.MAX_VALUE)
-    Column(
+   LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-         Image(ImageBitmap.imageResource(id = R.drawable.login), contentDescription = "",alignment = Alignment.TopCenter)
-       // LottieAnimation(animationSpec,animationState=animationState)
-//
-        var email by remember { mutableStateOf("") }
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-            maxLines = 1,
-            singleLine = true,
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Filled.Email,
-                    contentDescription = "Email Icon"
-                )
-            })
-        var password by remember { mutableStateOf("") }
-        OutlinedTextField(
-            value = password,
-            maxLines = 1,
-            singleLine = true,
-            onValueChange = { password = it },
-            label = { Text("Password") }
-        )
-
-        Spacer(modifier = Modifier.padding(20.dp))
-        Button(
-            onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
+       item {
+           Image(
+               ImageBitmap.imageResource(id = R.drawable.login),
+               contentDescription = "",
+               alignment = Alignment.TopCenter
+           )
+           // LottieAnimation(animationSpec,animationState=animationState)
+       }
+       item {
+           var email by remember { mutableStateOf("") }
+           OutlinedTextField(
+               value = email,
+               onValueChange = { email = it },
+               label = { Text("Email") },
+               maxLines = 1,
+               singleLine = true,
+               leadingIcon = {
+                   Icon(
+                       imageVector = Icons.Filled.Email,
+                       contentDescription = "Email Icon"
+                   )
+               }, keyboardOptions = KeyboardOptions(
+                   keyboardType = KeyboardType.Email
+               )
+           )
+       }
+       item {
+           var password by remember { mutableStateOf("") }
+           OutlinedTextField(
+               value = password,
+               maxLines = 1,
+               singleLine = true,
+               onValueChange = { password = it },
+               label = { Text("Password") },
+               keyboardOptions = KeyboardOptions(
+                   keyboardType = KeyboardType.Password
+               )
+           )
+       }
+       item {
+           Spacer(modifier = Modifier.padding(10.dp))
+           Button(
+               onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
 //                if(email.isNotEmpty() && password.isNotEmpty()){
 //                    CoroutinesScope(Dispatcher.IO).launch{
 //                        try{
 //                            auth.signInWithEmailAndPassword(email,password).await()
 //                            withContext(Dispatchers.Main){
 //                                Toast.makeText(context,"Login Successfull",Toast.LENGTH_SHORT).show()
-                                navController.navigate("Main")
+                   navController.navigate("Main")
 //                            }
 //                        } catch(e.Exception){
 //                            withContext(Dispatcher.Main){
@@ -258,18 +301,43 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 //                }else{
 //                    Toast.makeText(context,"Enter Valid Credentials",Toast.LENGTH_SHORT).show()
 //                }
-                
-            }, shape = RoundedCornerShape(50)
-        ){
-            Text("LOGIN")
+
+               }, shape = RoundedCornerShape(30)
+           ) {
+               Text("LOGIN")
 //            when(state.status){
 //                LoadingState.Status.SUCCESS -> {Text(text = "Success")}
 //                LoadingState.Status.FAILED -> {Text(text = state.msg ?: "Error")}
 //
 //            }
-        }
-    }
-}
+           }
+       }
+       item {
+           Spacer(modifier = Modifier.padding(10.dp))
+           ClickableText(//text = AnnotatedString("Dint have account yet ? Register here")
+                   buildAnnotatedString {  append("")
+                       withStyle(
+                           style = SpanStyle(
+                               color =Color.Blue,
+
+                           )
+                       ) {
+                           append("Dint have account yet ?")
+                       }
+                        withStyle(
+                            style = SpanStyle(
+                                color =  DarkRed ,
+                                fontWeight = FontWeight.Bold
+                            )
+                        ) {
+                            append(" Register here")
+                        }
+                    },
+               onClick = { navController.navigate("signin") })
+       }
+   }
+                }
+
 
 
 
@@ -413,7 +481,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                             .height(100.dp)
                             .padding(15.dp)
                             .clickable(
-                                onClick = { navController.navigate("login") }
+                                onClick = { navController.navigate("signin") }
                             )
                     )
                     Text(
@@ -451,18 +519,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 
                 }
             }
-@Composable
-fun CalcScreen(navController: NavHostController) {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
 
-        Text("Available Soon")
-
-    }
-}
 
 //@SuppressLint("SetJavaScriptEnabled")
 //@Composable

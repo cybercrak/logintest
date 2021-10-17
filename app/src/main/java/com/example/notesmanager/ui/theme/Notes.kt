@@ -23,6 +23,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.notesmanager.R
 
+
+
 @ExperimentalFoundationApi
 @Composable
 fun Notes(navController: NavHostController) {
@@ -48,11 +50,7 @@ fun Notes(navController: NavHostController) {
                         .padding(top = 40.dp)
                         .clickable(
                             onClick = {
-                                Toast
-                                    .makeText(
-                                        context, "In progress", Toast.LENGTH_SHORT
-                                    )
-                                    .show()
+                                navController.navigate("bcayear")
                             }
                         )
                 )

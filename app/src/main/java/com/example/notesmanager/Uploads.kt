@@ -19,6 +19,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import com.example.notesmanager.ui.theme.lightBlue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
@@ -63,7 +64,7 @@ fun Upload (navController: NavHostController) {
             Icon(Icons.Filled.CloudUpload,
             "Upload",
                 modifier = Modifier.size(50.dp),
-           tint =Color.Cyan)
+           tint =lightBlue)
         }
     }
 }
