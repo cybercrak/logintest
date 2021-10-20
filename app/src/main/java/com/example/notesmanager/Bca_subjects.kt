@@ -1,6 +1,8 @@
 package com.example.notesmanager
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
@@ -8,11 +10,13 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -24,6 +28,7 @@ import com.example.notesmanager.ui.theme.DarkRed
 import com.example.notesmanager.ui.theme.lightBlue
 import com.example.notesmanager.ui.theme.lightRed
 
+@ExperimentalMaterialApi
 @Composable
 fun Bca_yearselection(navController: NavHostController) {
     LazyColumn(
@@ -585,12 +590,26 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
+                        Box(modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center) {
+                            Image(
+                                painter = painterResource(id =R.drawable.bca),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .width(100.dp)
+                                    .height(100.dp)
+                            )}
+                        Box(modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.BottomCenter) {
+                            Text(
+                                "Operating System",
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                modifier = Modifier.padding(10.dp)
+                            )
 
-                        Text(
-                            "Operating System", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        }
                     }
                 }
                 item {
@@ -600,14 +619,28 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("madunits")}
                     ) {
-
-                        Text(
-                            "Mobile Application Development", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center) {
+                            Image(
+                                painter = painterResource(id = R.drawable.android_studio),
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .width(100.dp)
+                                    .height(100.dp)
+                            )}
+                        Box(modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.BottomCenter) {
+                            Text(
+                                "MAD" ,
+                                textAlign = TextAlign.Center,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 15.sp,
+                                modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {

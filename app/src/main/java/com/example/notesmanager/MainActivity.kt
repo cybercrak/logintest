@@ -24,7 +24,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.Icon
-import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.IconButton
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -48,7 +49,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.notesmanager.ui.theme.NotesManagerTheme
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -56,14 +56,19 @@ import com.google.firebase.ktx.Firebase
 //import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.notesmanager.ui.theme.Notes
 import androidx.compose.runtime.*
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.withStyle
-import com.example.notesmanager.ui.theme.DarkRed
+import androidx.navigation.NavOptions
+import androidx.navigation.compose.currentBackStackEntryAsState
+import com.example.notesmanager.ui.theme.*
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.internal.api.FirebaseNoSignedInUserException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -73,16 +78,17 @@ import kotlinx.coroutines.withContext
 class MainActivity : ComponentActivity() {
    // private lateinit var auth: FirebaseAuth
 
+    @ExperimentalMaterialApi
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             NotesManagerTheme {
                 // A surface container using the 'background' color from the theme
+
                 Surface(color = MaterialTheme.colors.background) {
 
-                    Navigation()
-
+                   Navigation()
 
                 }
             }
@@ -91,6 +97,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @Composable
 fun Navigation(){
@@ -104,6 +111,9 @@ fun Navigation(){
         composable("notes"){ Notes(navController= navController)}
         composable("upload"){ Upload(navController= navController)}
         composable("bcayear") { Bca_yearselection(navController = navController) }
+        composable("madunits") { MAD_units(navController = navController)}
+        composable("madnotes") { MAD_notes(navController = navController)}
+        composable("home"){Home (navController = navController)}
 
         // composable("cms"){ CMSscreen(navController= navController)}
        // composable("fee"){ Fee(navController= navController)}
@@ -184,30 +194,30 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
 
             Button(
                 onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
-                    CoroutineScope(Dispatchers.IO).launch {
-//                        try {
+                    CoroutineScope(Dispatchers.Main).launch {
+                        try {
                         if (password == cpassword) {
                             auth.createUserWithEmailAndPassword(email, cpassword).await()
-//                            withContext(Dispatchers.Main) {
+                            withContext(Dispatchers.Main) {
 
                         navController.navigate("login")
-//                            Toast.makeText(
-//                                context, "User Registered", Toast.LENGTH_SHORT
-//                            ).show()
+                            Toast.makeText(
+                                context, "User Registered", Toast.LENGTH_SHORT
+                            ).show()
 
-//                            }
-//                        } catch (e: Exception) {
-//                            withContext(Dispatchers.Main) {
-//                                Toast.makeText(
-//                                    context, "Error occured", Toast.LENGTH_SHORT
-//                                ).show()
-//                            }
-//                        }
-                        }else {
+                            }}
+                        } catch (e: Exception) {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(
+                                    context, "UnKnown Error occured", Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+//                        }else {
 //                            Toast.makeText(
 //                                context, "Enter password correctly", Toast.LENGTH_SHORT
 //                            ).show()
-                        }
+//                        }
                     }
                 }, shape = RoundedCornerShape(20)
             ) {
@@ -236,6 +246,11 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
     //val state by viewModel.loadingState.collectAsState()
 //    val animationSpec = remember{LottieAnimationSpec.RawRes(R.raw.Loginanim)}
 //    val animationState = rememberLottieAnimationState(autoplay= true, repeatCount = Integer.MAX_VALUE)
+    val context = LocalContext.current
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var auth = FirebaseAuth.getInstance()
+
    LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -250,7 +265,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
            // LottieAnimation(animationSpec,animationState=animationState)
        }
        item {
-           var email by remember { mutableStateOf("") }
+
            OutlinedTextField(
                value = email,
                onValueChange = { email = it },
@@ -268,7 +283,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
            )
        }
        item {
-           var password by remember { mutableStateOf("") }
+
            OutlinedTextField(
                value = password,
                maxLines = 1,
@@ -284,24 +299,33 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
            Spacer(modifier = Modifier.padding(10.dp))
            Button(
                onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
-//                if(email.isNotEmpty() && password.isNotEmpty()){
-//                    CoroutinesScope(Dispatcher.IO).launch{
-//                        try{
-//                            auth.signInWithEmailAndPassword(email,password).await()
-//                            withContext(Dispatchers.Main){
-//                                Toast.makeText(context,"Login Successfull",Toast.LENGTH_SHORT).show()
-                   navController.navigate("Main")
-//                            }
-//                        } catch(e.Exception){
-//                            withContext(Dispatcher.Main){
-//                                Toast.makeText(context,"Credentials Mismatch",Toast.LENGTH_SHORT).show()
-//                            }
-//                        }
-//                    }
+                   CoroutineScope(Dispatchers.Main).launch {
+                       try {
+
+                           if (email.isNotEmpty() && password.isNotEmpty()) {
+                               auth.signInWithEmailAndPassword(email, password).await()
+                               withContext(Dispatchers.Main) {
+                                   Toast.makeText(context, "Login Successfull", Toast.LENGTH_SHORT)
+                                       .show()
+                                   navController.navigate("Main")
+                               }
+                           } else {
+                               Toast.makeText(
+                                   context, "Enter valid credentials", Toast.LENGTH_SHORT
+                               ).show()
+                           }
+                       } catch (e: Exception) {
+                           withContext(Dispatchers.Main) {
+                               Toast.makeText(
+                                   context, "UnKnown Error occured", Toast.LENGTH_SHORT
+                               ).show()
+                           }
+                       }
 //                }else{
 //                    Toast.makeText(context,"Enter Valid Credentials",Toast.LENGTH_SHORT).show()
 //                }
 
+                   }
                }, shape = RoundedCornerShape(30)
            ) {
                Text("LOGIN")
@@ -311,6 +335,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 //
 //            }
            }
+
        }
        item {
            Spacer(modifier = Modifier.padding(10.dp))
@@ -341,184 +366,256 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 
 
 
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
     @Composable
     fun MainScreen(navController: NavHostController) {
-        val images = (0..7).toList()
-        LazyVerticalGrid(
-            cells = GridCells.Fixed(3),
-            contentPadding = PaddingValues(15.dp),
-        ) {
-            item {
-                Column(modifier = Modifier.fillMaxSize(),
-                horizontalAlignment =  Alignment.CenterHorizontally){
-                    Image(ImageBitmap.imageResource(id = R.drawable.calc),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp)
-                            .padding(15.dp)
-                            .clickable(
-                                onClick = { navController.navigate("Calc") }
-                            )
-                    )
-                    Text(
-                        "Percentage Calculator",
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center,
 
+    val images = (0..7).toList()
+    LazyVerticalGrid(
+        cells = GridCells.Fixed(3),
+        contentPadding = PaddingValues(15.dp),
+    ) {
+        item {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(ImageBitmap.imageResource(id = R.drawable.calc),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(15.dp)
+                        .clickable(
+                            onClick = { navController.navigate("Calc") }
                         )
-                }
-            }
-            item {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(ImageBitmap.imageResource(id = R.drawable.archives_77899),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp)
-                            .padding(15.dp)
-                            .clickable(
-                                onClick = { navController.navigate("notes") }
-                            )
+                )
+                Text(
+                    "Percentage Calculator",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center,
 
                     )
-                    Text(
-                        "Notes",
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
             }
-            item {
-                Column(modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment =  Alignment.CenterHorizontally) {
-                    Image(ImageBitmap.imageResource(id = R.drawable.uploads),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp)
-                            .padding(15.dp)
-                            .clickable(
-                                onClick = {
-                                    navController.navigate("upload")
+        }
+        item {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(ImageBitmap.imageResource(id = R.drawable.archives_77899),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(15.dp)
+                        .clickable(
+                            onClick = { navController.navigate("notes") }
+                        )
 
-                                }
-                            )
-                    )
-                    Text(
-                        "Uploads",
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
+                )
+                Text(
+                    "Notes",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
             }
-            item {
-                Column(modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment =  Alignment.CenterHorizontally) {
-                    val intent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(
-                            "https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment")
-                    )
-                    val context = LocalContext.current
-                    Image(ImageBitmap.imageResource(id = R.drawable.fee),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp)
-                            .padding(15.dp)
-                            .clickable(
-                                onClick = { startActivity(context, intent, null) }
-                            )
-                    )
-                    Text(
-                        "Fee",
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
-            item {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    val intent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://mis.srcas.ac.in/SNRApp"))
-                    val context = LocalContext.current
-                    Image(ImageBitmap.imageResource(id = R.drawable.cms1),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp)
-                            .padding(15.dp)
-                            .clickable(
-                                onClick = {
-                                    startActivity(context, intent, null)
-                                }
-                            )
-                    )
-                    Text(
-                        "MIS",
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
-            }
+        }
+        item {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(ImageBitmap.imageResource(id = R.drawable.uploads),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(15.dp)
+                        .clickable(
+                            onClick = {
+                                navController.navigate("upload")
 
-            item {
-                Column(
-                    modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Image(ImageBitmap.imageResource(id = R.drawable.questionbank),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp)
-                            .padding(15.dp)
-                            .clickable(
-                                onClick = { navController.navigate("signin") }
-                            )
-                    )
-                    Text(
-                        "Question Bank",
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
+                            }
+                        )
+                )
+                Text(
+                    "Uploads",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
             }
-            item {
-                Column(modifier = Modifier.fillMaxSize(),
-                    horizontalAlignment =  Alignment.CenterHorizontally) {
-                    val intent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse(
-                            "http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults")
+        }
+        item {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(
+                        "https://mis.srcas.ac.in/SNRApp/Fees/StudentFees/FeesOnlinePayment"
                     )
-                    val context = LocalContext.current
-                    Image(ImageBitmap.imageResource(id = R.drawable.result),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .width(100.dp)
-                            .height(100.dp)
-                            .padding(15.dp)
-                            .clickable(
-                                onClick = { startActivity(context, intent, null) }
-                            )
-                    )
-                    Text(
-                        "Result",
-                        fontSize = 12.sp,
-                        textAlign = TextAlign.Center
-                    )
-                }
+                )
+                val context = LocalContext.current
+                Image(ImageBitmap.imageResource(id = R.drawable.fee),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(15.dp)
+                        .clickable(
+                            onClick = { startActivity(context, intent, null) }
+                        )
+                )
+                Text(
+                    "Fee",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
             }
+        }
+        item {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse("https://mis.srcas.ac.in/SNRApp")
+                )
+                val context = LocalContext.current
+                Image(ImageBitmap.imageResource(id = R.drawable.cms1),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(15.dp)
+                        .clickable(
+                            onClick = {
+                                startActivity(context, intent, null)
+                            }
+                        )
+                )
+                Text(
+                    "MIS",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
 
-                }
+        item {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(ImageBitmap.imageResource(id = R.drawable.questionbank),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(15.dp)
+                        .clickable(
+                            onClick = { navController.navigate("signin") }
+                        )
+                )
+                Text(
+                    "Question Bank",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
             }
+        }
+        item {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                val intent = Intent(
+                    Intent.ACTION_VIEW,
+                    Uri.parse(
+                        "http://mis.srcas.ac.in/SNRApp/coe/result/viewexamresults"
+                    )
+                )
+                val context = LocalContext.current
+                Image(ImageBitmap.imageResource(id = R.drawable.result),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(15.dp)
+                        .clickable(
+                            onClick = { startActivity(context, intent, null) }
+                        )
+                )
+                Text(
+                    "Result",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+                )
+            }
+        }
+
+    }
+
+    Row(modifier=Modifier.fillMaxSize().padding(5.dp),
+    verticalAlignment = Alignment.Bottom,
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ){
+        IconButton(
+            onClick={
+                navController.navigate("home")
+            },
+
+        ){
+            Icon(Icons.Filled.Info,
+                "about")
+        }
+
+        IconButton(
+            onClick={
+                navController.navigate("home")
+            },
+
+            ){
+            Icon(Icons.Filled.Settings,
+                "settings")
+        }
+
+        IconButton(
+            onClick={
+                navController.navigate("home")
+            },
+
+            ){
+            Icon(Icons.Filled.ContactMail,
+                "queries")
+        }
+    }
+
+}
+
+@Composable
+fun Home(navController: NavHostController){
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ){
+        Icon(
+            imageVector = Icons.Filled.Help,
+            contentDescription = "something",
+            tint = Color(0xFF0F9D58)
+        )
+        Text(text="Under development", color = Color.Gray)
+    }
+}
+
+
 
 
 //@SuppressLint("SetJavaScriptEnabled")
@@ -608,11 +705,13 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 
 
 @ExperimentalFoundationApi
+@ExperimentalMaterialApi
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     NotesManagerTheme {
         Navigation()
+
     }
 }
 
