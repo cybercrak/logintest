@@ -511,8 +511,10 @@ fun CalcScreen(navController: NavHostController) {
             Text("Percent",color = Color.Red)}
 
 
+
+
         val const = 9.5
-        val cgpa = percent/const
+        val cgpa = percent/const //Cgpa
         OutlinedButton(modifier = Modifier.padding(bottom = 30.dp), onClick = {
 
 
