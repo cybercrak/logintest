@@ -11,11 +11,13 @@ import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color.Companion.Blue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
@@ -23,10 +25,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.notesmanager.ui.theme.DarkBlue
-import com.example.notesmanager.ui.theme.DarkRed
-import com.example.notesmanager.ui.theme.lightBlue
-import com.example.notesmanager.ui.theme.lightRed
+import com.example.notesmanager.ui.theme.lightpurple
+import com.example.notesmanager.ui.theme.purple1
+import com.example.notesmanager.ui.theme.*
 
 @ExperimentalMaterialApi
 @Composable
@@ -68,12 +69,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -85,12 +95,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -102,12 +121,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -119,12 +147,22 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
 
-                        Text(
-                            "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                            Text(
+                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -136,12 +174,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -153,11 +200,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
 
                     }
                 }
@@ -196,12 +253,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -213,12 +279,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -230,12 +305,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -247,12 +331,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -264,12 +357,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -282,12 +384,22 @@ fun Bca_yearselection(navController: NavHostController) {
                         shape = RoundedCornerShape(10.dp)
 
                     ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
 
-                        Text(
-                            "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                            Text(
+                                "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
 
@@ -317,7 +429,7 @@ fun Bca_yearselection(navController: NavHostController) {
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                  //  .padding(top = 630.dp)
+                    //  .padding(top = 630.dp)
                     .wrapContentHeight()
             ) {
                 item {
@@ -329,12 +441,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -346,12 +467,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -363,12 +493,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -380,12 +519,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -397,12 +545,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -415,12 +572,22 @@ fun Bca_yearselection(navController: NavHostController) {
                         shape = RoundedCornerShape(10.dp)
 
                     ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
 
-                        Text(
-                            "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                            Text(
+                                "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
             }
@@ -448,7 +615,7 @@ fun Bca_yearselection(navController: NavHostController) {
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                  //  .padding(top = 930.dp)
+                    //  .padding(top = 930.dp)
                     .wrapContentHeight()
             ) {
                 item {
@@ -460,12 +627,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -477,12 +653,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -494,12 +679,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -511,12 +705,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -528,12 +731,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -546,12 +758,22 @@ fun Bca_yearselection(navController: NavHostController) {
                         shape = RoundedCornerShape(10.dp)
 
                     ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
 
-                        Text(
-                            "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                            Text(
+                                "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
             }
@@ -578,7 +800,7 @@ fun Bca_yearselection(navController: NavHostController) {
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                   // .padding(top = 1230.dp)
+                    // .padding(top = 1230.dp)
                     .wrapContentHeight()
             ) {
                 item {
@@ -589,18 +811,32 @@ fun Bca_yearselection(navController: NavHostController) {
                             .padding(10.dp),
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
+                    ) {Box(
+                        Modifier.background(
+                            Brush.horizontalGradient(
+                                listOf(
+                                    MaterialTheme.colors.primary,
+                                    MaterialTheme.colors.primaryVariant
+                                )
+                            )
+                        )
                     ) {
-                        Box(modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center) {
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center
+                        ) {
                             Image(
-                                painter = painterResource(id =R.drawable.bca),
+                                painter = painterResource(id = R.drawable.bca),
                                 contentDescription = "",
                                 modifier = Modifier
                                     .width(100.dp)
                                     .height(100.dp)
-                            )}
-                        Box(modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.BottomCenter) {
+                            )
+                        }
+                        Box(
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.BottomCenter
+                        ) {
                             Text(
                                 "Operating System",
                                 textAlign = TextAlign.Center,
@@ -608,8 +844,9 @@ fun Bca_yearselection(navController: NavHostController) {
                                 fontSize = 15.sp,
                                 modifier = Modifier.padding(10.dp)
                             )
-
                         }
+
+                    }
                     }
                 }
                 item {
@@ -620,25 +857,69 @@ fun Bca_yearselection(navController: NavHostController) {
                             .padding(10.dp),
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp),
-                        onClick = { navController.navigate("madunits")}
+                        onClick = { navController.navigate("madunits") }
                     ) {
-                        Box(modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center) {
-                            Image(
-                                painter = painterResource(id = R.drawable.android_studio),
-                                contentDescription = "",
-                                modifier = Modifier
-                                    .width(100.dp)
-                                    .height(100.dp)
-                            )}
-                        Box(modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.BottomCenter) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.android_studio),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "MAD",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+
+
+                item {
+                    Card(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(10.dp),
+                        elevation = 20.dp,
+                        shape = RoundedCornerShape(10.dp)
+                    ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
                             Text(
-                                "MAD" ,
-                                textAlign = TextAlign.Center,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 15.sp,
-                                modifier = Modifier.padding(10.dp)
+                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
                         }
                     }
@@ -652,12 +933,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Text(
+                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -669,29 +959,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
-                    }
-                }
-                item {
-                    Card(
-                        modifier = Modifier
-                            .width(200.dp)
-                            .height(200.dp)
-                            .padding(10.dp),
-                        elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-
-                        Text(
-                            "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Text(
+                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -704,12 +986,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         shape = RoundedCornerShape(10.dp)
 
                     ) {
-
-                        Text(
-                            "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Text(
+                                "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
             }
@@ -736,7 +1027,7 @@ fun Bca_yearselection(navController: NavHostController) {
             LazyRow(
                 modifier = Modifier
                     .fillMaxWidth()
-                  //  .padding(top = 1530.dp)
+                    //  .padding(top = 1530.dp)
                     .wrapContentHeight()
             ) {
                 item {
@@ -748,12 +1039,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -765,12 +1065,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -782,12 +1091,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -799,12 +1117,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -816,12 +1143,21 @@ fun Bca_yearselection(navController: NavHostController) {
                         elevation = 20.dp,
                         shape = RoundedCornerShape(10.dp)
                     ) {
-
-                        Text(
-                            "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
+                            Text(
+                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
                 item {
@@ -834,15 +1170,26 @@ fun Bca_yearselection(navController: NavHostController) {
                         shape = RoundedCornerShape(10.dp)
 
                     ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            ),
+                        ) {
 
-                        Text(
-                            "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                        )
-
+                            Text(
+                                "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
+                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
+                            )
+                        }
                     }
                 }
             }
         }
     }
 }
+

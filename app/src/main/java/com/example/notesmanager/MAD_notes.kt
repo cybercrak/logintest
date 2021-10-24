@@ -15,6 +15,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import com.example.notesmanager.ui.theme.lightBlue
 
 @ExperimentalFoundationApi
 @Composable
@@ -28,12 +29,12 @@ fun MAD_notes(navController: NavHostController) {
 
         Text(
             "UNIT 1",
-            fontSize = 30.sp,
+            fontSize = 20.sp,
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Bold,
             modifier = Modifier
                 .align(Alignment.CenterHorizontally),
-            color = Color.Blue
+            color = lightBlue
 
         )
     }

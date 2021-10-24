@@ -1,8 +1,12 @@
 package com.example.notesmanager
 
 import android.annotation.SuppressLint
+import android.app.Person
 import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Context.CONNECTIVITY_SERVICE
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -26,6 +30,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.twotone.RemoveRedEye
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -63,12 +69,16 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.notesmanager.ui.theme.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.internal.api.FirebaseNoSignedInUserException
+import com.shashank.sony.fancytoastlib.FancyToast
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -113,7 +123,9 @@ fun Navigation(){
         composable("bcayear") { Bca_yearselection(navController = navController) }
         composable("madunits") { MAD_units(navController = navController)}
         composable("madnotes") { MAD_notes(navController = navController)}
-        composable("home"){Home (navController = navController)}
+        composable("about"){About (navController = navController)}
+        composable("setting"){Settings (navController = navController)}
+        composable("contact"){Contact (navController = navController)}
 
         // composable("cms"){ CMSscreen(navController= navController)}
        // composable("fee"){ Fee(navController= navController)}
@@ -145,79 +157,104 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
     //val state by viewModel.loadingState.collectAsState()
     val context = LocalContext.current
     var auth = FirebaseAuth.getInstance()
-    Column(
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+    var cpassword by remember { mutableStateOf("") }
+    LazyColumn(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        var email by remember { mutableStateOf("") }
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-            maxLines = 1,
-            singleLine = true,
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Filled.Email,
-                    contentDescription = "Email Icon"
+        item {
+
+
+            OutlinedTextField(
+                value = email,
+                onValueChange = { email = it },
+                label = { Text("Email") },
+                maxLines = 1,
+                singleLine = true,
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Filled.Email,
+                        contentDescription = "Email Icon"
+                    )
+                },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Email
                 )
-            },
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Email
-        ))
-        var password by remember { mutableStateOf("") }
-        OutlinedTextField(
-            value = password,
-            maxLines = 1,
-            singleLine = true,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password
             )
-        )
-        var cpassword by remember { mutableStateOf("") }
-        OutlinedTextField(
-            value = cpassword,
-            maxLines = 1,
-            singleLine = true,
-            onValueChange = { cpassword = it },
-            label = { Text("Confirm Password") },
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password
+        }
+        item {
+
+            OutlinedTextField(
+                value = password,
+                maxLines = 1,
+                singleLine = true,
+                onValueChange = { password = it },
+                label = { Text("Password") },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password
+                )
             )
+        }
+        item {
+
+            OutlinedTextField(
+                value = cpassword,
+                maxLines = 1,
+                singleLine = true,
+                onValueChange = { cpassword = it },
+                label = { Text("Confirm Password") },
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Password
+                )
             )
+        }
 
-        Spacer(modifier = Modifier.padding(20.dp))
 
-
+        item {
+            Spacer(modifier = Modifier.padding(20.dp))
             Button(
                 onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
                     CoroutineScope(Dispatchers.Main).launch {
                         try {
-                        if (password == cpassword) {
-                            auth.createUserWithEmailAndPassword(email, cpassword).await()
-                            withContext(Dispatchers.Main) {
 
-                        navController.navigate("login")
-                            Toast.makeText(
-                                context, "User Registered", Toast.LENGTH_SHORT
-                            ).show()
+                            if (password == cpassword) {
+                                auth.createUserWithEmailAndPassword(email, cpassword).await()
+                                withContext(Dispatchers.Main) {
 
-                            }}
+                                    navController.navigate("login")
+                                    FancyToast.makeText(
+                                        context, "User Registered", FancyToast.LENGTH_SHORT,
+                                        FancyToast.SUCCESS,R.drawable.person ,false
+                                    ).show()
+
+                                }
+                            }
+                            else if (email.isEmpty() || password.isEmpty() || cpassword.isEmpty()){
+                                FancyToast.makeText(
+                                    context, "Fields should not be empty", FancyToast.LENGTH_SHORT,
+                                    FancyToast.WARNING,R.drawable.warning,false
+                                ).show()
+
+                            }
+                            else{
+                                FancyToast.makeText(
+                                    context, "Check your INTERNET connection", FancyToast.LENGTH_SHORT,
+                                    FancyToast.ERROR,false
+                                ).show()
+
+                            }
+
                         } catch (e: Exception) {
                             withContext(Dispatchers.Main) {
-                                Toast.makeText(
-                                    context, "UnKnown Error occured", Toast.LENGTH_SHORT
+                                FancyToast.makeText(
+                                    context, "You are already a user..go to login", FancyToast.LENGTH_SHORT,
+                                    FancyToast.CONFUSING,R.drawable.person ,false
                                 ).show()
                             }
                         }
-//                        }else {
-//                            Toast.makeText(
-//                                context, "Enter password correctly", Toast.LENGTH_SHORT
-//                            ).show()
-//                        }
                     }
                 }, shape = RoundedCornerShape(20)
             ) {
@@ -231,12 +268,37 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
 
         }
 
+        item {
+            Spacer(modifier = Modifier.padding(10.dp))
+            ClickableText(//text = AnnotatedString("Dint have account yet ? Register here")
+                buildAnnotatedString {  append("")
+                    withStyle(
+                        style = SpanStyle(
+                            color =DarkRed,
+
+                            )
+                    ) {
+                        append("Already have an account ?")
+                    }
+                    withStyle(
+                        style = SpanStyle(
+                            color =  Color.Blue ,
+                            fontWeight = FontWeight.Bold
+                        )
+                    ) {
+                        append(" LOGIN")
+                    }
+                },
+                onClick = { navController.navigate("login") })
+        }
+    }
+
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Create Account", textAlign = TextAlign.Center)
+            Text("Create Account", textAlign = TextAlign.Center,fontWeight = FontWeight.Bold)
         }
     }
 
@@ -249,6 +311,8 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
     val context = LocalContext.current
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    val passwordVisiblity = remember { mutableStateOf(false)}
+
     var auth = FirebaseAuth.getInstance()
 
    LazyColumn(
@@ -290,6 +354,23 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                singleLine = true,
                onValueChange = { password = it },
                label = { Text("Password") },
+               leadingIcon = {
+                   Icon(
+                       imageVector = Icons.Filled.Lock,
+                       contentDescription = "lock"
+                   )
+               },
+               trailingIcon ={
+                   IconButton(onClick = {passwordVisiblity.value = !passwordVisiblity.value}) {
+                       Icon(
+                           imageVector = Icons.TwoTone.RemoveRedEye,
+                           contentDescription = "eye",
+                           tint = if(passwordVisiblity.value) Color.Red else Color.LightGray
+                       )
+                   }
+               },
+               visualTransformation = if(passwordVisiblity.value) VisualTransformation.None
+                       else PasswordVisualTransformation(),
                keyboardOptions = KeyboardOptions(
                    keyboardType = KeyboardType.Password
                )
@@ -298,6 +379,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
        item {
            Spacer(modifier = Modifier.padding(10.dp))
            Button(
+
                onClick = { /*viewModel.signInWithEmailAndPassword(email.trim(),password.trim())*/
                    CoroutineScope(Dispatchers.Main).launch {
                        try {
@@ -305,20 +387,39 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                            if (email.isNotEmpty() && password.isNotEmpty()) {
                                auth.signInWithEmailAndPassword(email, password).await()
                                withContext(Dispatchers.Main) {
-                                   Toast.makeText(context, "Login Successfull", Toast.LENGTH_SHORT)
+                                   FancyToast.makeText(
+                                       context, "Login Successfull", FancyToast.LENGTH_SHORT,
+                                       FancyToast.SUCCESS,false)
                                        .show()
                                    navController.navigate("Main")
                                }
-                           } else {
-                               Toast.makeText(
-                                   context, "Enter valid credentials", Toast.LENGTH_SHORT
-                               ).show()
+                           }
+                           else if(email.isEmpty() || password.isEmpty()){
+                               FancyToast.makeText(
+                                   context, "Enter valid credentials",
+                                   FancyToast.LENGTH_SHORT,
+                                   FancyToast.WARNING, R.drawable.warning,false).show()
+                           }
+                           else {
+//                               val connectivityManager = getSystemService(com.google.api.Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//                               val activeNetworkInfo = connectivityManager.getActiveNetworkInfo()
+//                               if (activeNetworkInfo = null && activeNetworkInfo.isConnected()) {
+                                   FancyToast.makeText(
+                                       context,
+                                       "Check your INTERNET connection",
+                                       FancyToast.LENGTH_SHORT,
+                                       FancyToast.ERROR,
+                                       false
+                                   ).show()
+                               //}
                            }
                        } catch (e: Exception) {
                            withContext(Dispatchers.Main) {
-                               Toast.makeText(
-                                   context, "UnKnown Error occured", Toast.LENGTH_SHORT
+                               FancyToast.makeText(
+                                   context, "User not registered..go to Sign in  ", FancyToast.LENGTH_SHORT,
+                                   FancyToast.ERROR,R.drawable.person,false
                                ).show()
+
                            }
                        }
 //                }else{
@@ -560,23 +661,25 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 
     }
 
-    Row(modifier=Modifier.fillMaxSize().padding(5.dp),
+    Row(modifier= Modifier
+        .fillMaxSize()
+        .padding(5.dp),
     verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.SpaceEvenly
     ){
         IconButton(
             onClick={
-                navController.navigate("home")
+                navController.navigate("about")
             },
 
         ){
             Icon(Icons.Filled.Info,
-                "about")
+                "About")
         }
 
         IconButton(
             onClick={
-                navController.navigate("home")
+                navController.navigate("setting")
             },
 
             ){
@@ -586,7 +689,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 
         IconButton(
             onClick={
-                navController.navigate("home")
+                navController.navigate("contact")
             },
 
             ){
@@ -597,23 +700,6 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 
 }
 
-@Composable
-fun Home(navController: NavHostController){
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ){
-        Icon(
-            imageVector = Icons.Filled.Help,
-            contentDescription = "something",
-            tint = Color(0xFF0F9D58)
-        )
-        Text(text="Under development", color = Color.Gray)
-    }
-}
 
 
 
