@@ -13,25 +13,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd967de9-6caa-4f2d-9d90-c7df3af3d65c" name="Default Changelist" comment="Implemented Custom toast">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/About.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/Contact.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/Settings.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bcom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/cup.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/person.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/warning.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/Bca_subjects.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/Bca_subjects.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/Calculator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/Calculator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/MAD_notes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/MAD_notes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/MAD_units.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/MAD_units.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/ui/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/ui/theme/Color.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/ui/theme/Notes.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/ui/theme/Notes.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/ui/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/notesmanager/ui/theme/Theme.kt" afterDir="false" />
-    </list>
+    <list default="true" id="fd967de9-6caa-4f2d-9d90-c7df3af3d65c" name="Default Changelist" comment="Implemented Custom toast" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -291,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634723040176</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Implemented Custom toast">
+      <created>1635093551701</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1635093551701</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
