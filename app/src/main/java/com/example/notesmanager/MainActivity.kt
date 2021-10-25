@@ -398,7 +398,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                                FancyToast.makeText(
                                    context, "Enter valid credentials",
                                    FancyToast.LENGTH_SHORT,
-                                   FancyToast.WARNING, R.drawable.warning,false).show()
+                                   FancyToast.WARNING, R.drawable.warning,false).show() // it
                            }
                            else {
 //                               val connectivityManager = getSystemService(com.google.api.Context.CONNECTIVITY_SERVICE) as ConnectivityManager
