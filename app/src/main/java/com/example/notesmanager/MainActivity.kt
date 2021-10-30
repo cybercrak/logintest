@@ -7,6 +7,7 @@ import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.content.Intent
 import android.net.ConnectivityManager
+import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
@@ -75,6 +76,9 @@ import androidx.compose.ui.text.withStyle
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.airbnb.lottie.LottieAnimationView
+import com.airbnb.lottie.LottieDrawable
+import com.airbnb.lottie.compose.*
 import com.example.notesmanager.ui.theme.*
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.internal.api.FirebaseNoSignedInUserException
@@ -114,6 +118,7 @@ fun Navigation(){
     val navController = rememberNavController()
 
     NavHost(navController = navController,startDestination = "login"){
+
         composable("signin"){ Signin(navController= navController)}
         composable("login"){ Login(navController= navController)}
         composable("Main"){ MainScreen(navController= navController)}
@@ -165,8 +170,29 @@ private fun Signin(navController: NavHostController/*,viewModel: LoginScreenView
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        item {
 
+item{
+
+        val compositionResult: LottieCompositionResult = rememberLottieComposition(
+            spec = LottieCompositionSpec.RawRes(
+                R.raw.siginseo
+            )
+        )
+        val progress by animateLottieCompositionAsState(
+            compositionResult.value,
+            isPlaying = true,
+            iterations = LottieConstants.IterateForever,
+            speed = 1.0f
+        )
+
+        LottieAnimation(
+            compositionResult.value,
+            progress,
+            modifier = Modifier.fillParentMaxHeight(0.5f)
+        )
+
+}
+        item {
 
             OutlinedTextField(
                 value = email,
@@ -320,14 +346,25 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-       item {
-           Image(
-               ImageBitmap.imageResource(id = R.drawable.login),
-               contentDescription = "",
-               alignment = Alignment.TopCenter
-           )
-           // LottieAnimation(animationSpec,animationState=animationState)
-       }
+        item {
+            val compositionResult: LottieCompositionResult = rememberLottieComposition(
+                spec = LottieCompositionSpec.RawRes(
+                    R.raw.login
+                )
+            )
+            val progress by animateLottieCompositionAsState(
+                compositionResult.value,
+                isPlaying = true,
+                iterations = LottieConstants.IterateForever,
+                speed = 0.5f
+            )
+
+            LottieAnimation(
+                compositionResult.value,
+                progress,
+                modifier = Modifier.fillParentMaxHeight(0.5f)
+                )
+        }
        item {
 
            OutlinedTextField(
@@ -401,9 +438,10 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                                    FancyToast.WARNING, R.drawable.warning,false).show() // it
                            }
                            else {
-//                               val connectivityManager = getSystemService(com.google.api.Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-//                               val activeNetworkInfo = connectivityManager.getActiveNetworkInfo()
-//                               if (activeNetworkInfo = null && activeNetworkInfo.isConnected()) {
+//                               val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+//                               val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
+//                               val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting ==true
+//                               if (activeNetwork = null && activeNetwork.isConnected()) {
                                    FancyToast.makeText(
                                        context,
                                        "Check your INTERNET connection",

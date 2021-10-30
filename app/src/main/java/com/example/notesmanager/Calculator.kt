@@ -1,6 +1,6 @@
 package com.example.notesmanager
 
-import android.widget.Toast
+
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
@@ -476,8 +476,7 @@ fun CalcScreen(navController: NavHostController) {
 
        }
 
-    val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() + mark4.toInt() + mark5.toInt() + mark6.toInt() )
-    val percent = result / No_of_Sub.toInt()
+
     Row(
         modifier = Modifier.fillMaxSize(),
         verticalAlignment = Alignment.Bottom,
@@ -486,7 +485,9 @@ fun CalcScreen(navController: NavHostController) {
 
         OutlinedButton(modifier = Modifier.padding(bottom = 30.dp),
             onClick = {
-
+                val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
+                        mark4.toInt() + mark5.toInt() + mark6.toInt())
+                val percent = result / No_of_Sub.toInt()
                 if (mark1.isEmpty() || mark2.isEmpty() || mark3.isEmpty() || mark4.isEmpty() || mark5.isEmpty() || mark6.isEmpty()
                 ) {
                     FancyToast.makeText(context, "Enter 0 in empty fields",
@@ -513,10 +514,13 @@ fun CalcScreen(navController: NavHostController) {
 
 
 
-        val const = 9.5
-        val cgpa = percent/const //Cgpa
-        OutlinedButton(modifier = Modifier.padding(bottom = 30.dp), onClick = {
 
+        OutlinedButton(modifier = Modifier.padding(bottom = 30.dp), onClick = {
+            val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
+                    mark4.toInt() + mark5.toInt() + mark6.toInt())
+            val percent = result / No_of_Sub.toInt()
+            val const = 9.5
+            val cgpa = percent/const
 
             if (mark1.isEmpty() || mark2.isEmpty() || mark3.isEmpty() || mark4.isEmpty() || mark5.isEmpty() || mark6.isEmpty()
             ) {
