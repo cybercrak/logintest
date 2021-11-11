@@ -10,20 +10,19 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 
 
 @ExperimentalFoundationApi
 @Composable
-fun MAD_units(navController: NavHostController) {
-
+fun sem5_Qbank(navController: NavController){
     val images = (0..7).toList()
+    Spacer(modifier = Modifier.padding(30.dp))
     LazyVerticalGrid(
         cells = GridCells.Fixed(1),
         contentPadding = PaddingValues(15.dp)
@@ -40,12 +39,12 @@ fun MAD_units(navController: NavHostController) {
                     painter = painterResource(id = R.drawable.bca),
                     contentDescription = "",
                     modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
+                        .width(75.dp)
+                        .height(75.dp)
                         .padding(5.dp)
                         .clickable(
                             onClick = {
-                                navController.navigate("madnotes_u1")
+                                navController.navigate("osqbank")
                             }
                         )
                 )
@@ -55,7 +54,7 @@ fun MAD_units(navController: NavHostController) {
                 ) {
 
                     Text(
-                        text = "Unit 1 - Introduction", fontWeight = FontWeight.Bold,
+                        text = "Operating System(OS)", fontWeight = FontWeight.Bold,
                         fontSize = 15.sp
                     )
 
@@ -75,12 +74,12 @@ fun MAD_units(navController: NavHostController) {
                     painter = painterResource(id = R.drawable.android_studio),
                     contentDescription = "",
                     modifier = Modifier
-                        .width(100.dp)
-                        .height(100.dp)
+                        .width(75.dp)
+                        .height(75.dp)
                         .padding(5.dp)
                         .clickable(
                             onClick = {
-                                navController.navigate("madnotes_u2")
+                                navController.navigate("madqbank")
                             }
                         )
                 )
@@ -90,7 +89,7 @@ fun MAD_units(navController: NavHostController) {
                 ) {
 
                     Text(
-                        text = "Unit 2 - Mobile User Interface Design", fontWeight = FontWeight.Bold,
+                        text = "Mobile Application Development(MAD)", fontWeight = FontWeight.Bold,
                         fontSize = 15.sp
                     )
 
@@ -99,13 +98,14 @@ fun MAD_units(navController: NavHostController) {
             }
         }
     }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Top
     ) {
 
         Text(
-            "UNITS",
+            "SEMESTER 5",
             fontSize = 20.sp,
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Bold,
@@ -113,12 +113,5 @@ fun MAD_units(navController: NavHostController) {
         )
 
     }
+
 }
-
-
-
-
-
-
-
-

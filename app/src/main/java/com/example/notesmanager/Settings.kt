@@ -1,5 +1,6 @@
 package com.example.notesmanager
 
+import android.app.Activity
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
@@ -20,6 +21,8 @@ import androidx.compose.material.icons.outlined.DarkMode
 import androidx.compose.material.icons.outlined.LightMode
 import androidx.compose.material.icons.outlined.Logout
 import androidx.compose.material.icons.outlined.Update
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 
 import androidx.navigation.NavHostController
 
@@ -75,7 +78,7 @@ fun Settings (navController: NavHostController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(top = 50.dp,end = 10.dp),
+            .padding(top = 50.dp, end = 10.dp),
 
         ) {
         val images = (0..7).toList()
@@ -104,11 +107,7 @@ fun Settings (navController: NavHostController) {
             Column(){
                         TextButton(
                             onClick = {
-                                Toast.makeText(
-                                    context, "check back later",
-                                    Toast.LENGTH_LONG
-                                )
-                                    .show()
+                                navController.navigate("update")
                             }
                         ) {
                             Text(
@@ -142,7 +141,7 @@ fun Settings (navController: NavHostController) {
                         TextButton(
                             onClick = {
                                 Toast.makeText(
-                                    context, "Switch your device to dark mode to invoke",
+                                    context, "Switch your device to dark mode to invoke dark theme",
                                     Toast.LENGTH_LONG)
                                     .show()
                             }
@@ -178,9 +177,8 @@ fun Settings (navController: NavHostController) {
                         TextButton(
                             onClick = {
                                 Toast.makeText(
-                                    context, "Switch your Light to dark mode to invoke",
-                                    Toast.LENGTH_LONG
-                                )
+                                    context, "Switch your device to light mode to invoke default theme",
+                                    Toast.LENGTH_LONG)
                                     .show()
                             }
                         ) {
@@ -198,6 +196,8 @@ fun Settings (navController: NavHostController) {
 
 
             item {
+                val openDialog = remember{ mutableStateOf(false)}
+                val activity = (LocalContext.current as? Activity)
                 Row(modifier = Modifier
                     .fillMaxSize()
                     .padding(30.dp),
@@ -212,12 +212,10 @@ fun Settings (navController: NavHostController) {
                         tint = MaterialTheme.colors.primary
                     )
                Column(){
+
                             TextButton(
                                 onClick = {
-                                    Toast.makeText(
-                                        context,"Available Soon",
-                                        Toast.LENGTH_SHORT)
-                                        .show()
+                                   openDialog.value = true
                                 }
                             ){
                                 Text("Logout",
@@ -225,6 +223,22 @@ fun Settings (navController: NavHostController) {
                                     fontSize = 14.sp,
                                 color = MaterialTheme.colors.onBackground)
                             }
+                   if (openDialog.value){
+                       AlertDialog(onDismissRequest = {
+                           openDialog.value = false
+                       },title = {Text(text="Logout")},
+                           text = {Text(text="Really want to logout")},
+                       confirmButton = {
+                           OutlinedButton(onClick = {activity?.finish()}){
+                               Text("Logout")
+                           }
+                       },
+                       dismissButton = {
+                           Button(onClick = {navController.navigate("setting")}){
+                               Text("Dismiss")
+                           }
+                       })
+                   }
 
 
                         }

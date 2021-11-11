@@ -1,5 +1,8 @@
 package com.example.notesmanager
 
+import android.content.Intent
+import android.content.Intent.*
+import android.net.Uri
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
@@ -16,10 +19,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.material.icons.outlined.ReportProblem
 import androidx.compose.material.icons.outlined.Feedback
 import androidx.compose.material.icons.outlined.Mail
+import androidx.compose.runtime.remember
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.NavHostController
 
 @ExperimentalFoundationApi
@@ -99,13 +105,16 @@ fun Contact (navController: NavHostController) {
                     )
 
                     Column() {
+                        val intent  = Intent(ACTION_SENDTO).apply{
+                            data = Uri.parse("mailto:nsarran37@gmail.com")
+                        }
+
+                        intent.putExtra(EXTRA_SUBJECT,"Issue occured")
+                        intent.setPackage("com.google.android.gm")
+
                         TextButton(
                             onClick = {
-                                Toast.makeText(
-                                    context, "Available Soon",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
+                                startActivity(context, intent, null)
                             }
                         ) {
                             Text(
@@ -175,14 +184,17 @@ fun Contact (navController: NavHostController) {
                         "contact",
                         tint = MaterialTheme.colors.primary
                     )
+
                     Column() {
+                        val intent  = Intent(ACTION_SENDTO).apply{
+                            data = Uri.parse("mailto:nsarran37@gmail.com")
+                        }
+                        intent.putExtra(EXTRA_SUBJECT,"Friend Request")
+                        intent.setPackage("com.google.android.gm")
+
                         TextButton(
                             onClick = {
-                                Toast.makeText(
-                                    context, "Available Soon",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
+                                startActivity(context, intent, null)
                             }
                         ) {
                             Text(
@@ -201,4 +213,6 @@ fun Contact (navController: NavHostController) {
         }
     }
 }
+
+
 

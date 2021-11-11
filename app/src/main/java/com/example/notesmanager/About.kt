@@ -1,5 +1,8 @@
 package com.example.notesmanager
 
+import android.view.ViewGroup
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.*
@@ -18,7 +21,9 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavHostController
+
 
 @ExperimentalFoundationApi
 @Composable
@@ -99,11 +104,8 @@ fun About(navController: NavHostController) {
                     Column() {
                         TextButton(
                             onClick = {
-                                Toast.makeText(
-                                    context, "Available soon",
-                                    Toast.LENGTH_LONG
-                                )
-                                    .show()
+                                navController.navigate("wix")
+
                             }
                         ) {
 
@@ -136,11 +138,7 @@ fun About(navController: NavHostController) {
                     Column() {
                         TextButton(
                             onClick = {
-                                Toast.makeText(
-                                    context, "Permission Denied !",
-                                    Toast.LENGTH_LONG
-                                )
-                                    .show()
+                                navController.navigate("softwarelicenses")
                             }
                         ) {
                             Text(

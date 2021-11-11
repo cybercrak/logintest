@@ -126,17 +126,28 @@ fun Navigation(){
         composable("notes"){ Notes(navController= navController)}
         composable("upload"){ Upload(navController= navController)}
         composable("bcayear") { Bca_yearselection(navController = navController) }
+        composable("sembca") { Bca_semselection(navController = navController) }
         composable("madunits") { MAD_units(navController = navController)}
-        composable("madnotes") { MAD_notes(navController = navController)}
+        composable("madnotes_u1") { MAD_notes(navController = navController)}
+        composable("madnotes_u2") { MAD_notesU2(navController = navController)}
         composable("about"){About (navController = navController)}
         composable("setting"){Settings (navController = navController)}
         composable("contact"){Contact (navController = navController)}
+        composable("bsc_branches"){ Bsc_branches(navController= navController)}
+        composable("underdev"){ Under_development(navController= navController)}
+        composable("update"){ update(navController= navController)}
+        composable("qbank"){ qbank(navController= navController)}
+        composable("sem5qbank"){ sem5_Qbank(navController= navController)}
+        composable("madqbank"){ Mad_qbank(navController= navController)}
+        composable("osqbank"){ Os_qbank(navController= navController)}
+        composable("wix"){ Wix(navController= navController)}
+        composable("softwarelicenses"){ Software_License(navController= navController)}
 
-        // composable("cms"){ CMSscreen(navController= navController)}
-       // composable("fee"){ Fee(navController= navController)}
+        // composable("fee"){ Fee(navController= navController)}
        // composable("result"){ Result(navController= navController)}
     }
 }
+
 
 
 //fun userRegistration(navController: NavHostController) {
@@ -212,6 +223,8 @@ item{
             )
         }
         item {
+            val passwordVisiblity = remember { mutableStateOf(false)}
+
 
             OutlinedTextField(
                 value = password,
@@ -219,12 +232,30 @@ item{
                 singleLine = true,
                 onValueChange = { password = it },
                 label = { Text("Password") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = "lock"
+                    )
+                },
+                trailingIcon ={
+                    IconButton(onClick = {passwordVisiblity.value = !passwordVisiblity.value}) {
+                        Icon(
+                            imageVector = Icons.TwoTone.RemoveRedEye,
+                            contentDescription = "eye",
+                            tint = if(passwordVisiblity.value) Color.Green else Color.LightGray
+                        )
+                    }
+                },
+                visualTransformation = if(passwordVisiblity.value) VisualTransformation.None
+                else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password
                 )
             )
         }
         item {
+            val passwordVisiblity = remember { mutableStateOf(false)}
 
             OutlinedTextField(
                 value = cpassword,
@@ -232,10 +263,27 @@ item{
                 singleLine = true,
                 onValueChange = { cpassword = it },
                 label = { Text("Confirm Password") },
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Filled.Lock,
+                        contentDescription = "lock"
+                    )
+                },
+                trailingIcon ={
+                    IconButton(onClick = {passwordVisiblity.value = !passwordVisiblity.value}) {
+                        Icon(
+                            imageVector = Icons.TwoTone.RemoveRedEye,
+                            contentDescription = "eye",
+                            tint = if(passwordVisiblity.value) Color.Green else Color.LightGray
+                        )
+                    }
+                },
+                visualTransformation = if(passwordVisiblity.value) VisualTransformation.None
+                else PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Password
                 )
-            )
+                )
         }
 
 
@@ -657,7 +705,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                         .height(100.dp)
                         .padding(15.dp)
                         .clickable(
-                            onClick = { navController.navigate("signin") }
+                            onClick = { navController.navigate("qbank") }
                         )
                 )
                 Text(
@@ -737,7 +785,6 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
     }
 
 }
-
 
 
 

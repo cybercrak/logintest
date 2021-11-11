@@ -511,10 +511,6 @@ fun CalcScreen(navController: NavHostController) {
         },           ) {
             Text("Percent",color = Color.Red)}
 
-
-
-
-
         OutlinedButton(modifier = Modifier.padding(bottom = 30.dp), onClick = {
             val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
                     mark4.toInt() + mark5.toInt() + mark6.toInt())

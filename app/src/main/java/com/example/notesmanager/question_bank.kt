@@ -1,33 +1,29 @@
-package com.example.notesmanager.ui.theme
+package com.example.notesmanager
 
 import android.widget.Toast
-import androidx.compose.foundation.*
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import com.example.notesmanager.R
-
-
+import androidx.navigation.NavController
 
 @ExperimentalFoundationApi
 @Composable
-fun Notes(navController: NavHostController) {
+fun qbank(navController: NavController){
     val context = LocalContext.current
 
     val images = (0..7).toList()
@@ -50,7 +46,7 @@ fun Notes(navController: NavHostController) {
                         .padding(top = 40.dp)
                         .clickable(
                             onClick = {
-                                navController.navigate("bcayear")
+                                navController.navigate("sembca")
                             }
                         )
                 )
@@ -59,7 +55,7 @@ fun Notes(navController: NavHostController) {
                     "BCA",
                     fontSize = 12.sp,
                     textAlign = TextAlign.Center
-                    )
+                )
             }
         }
 
@@ -78,7 +74,11 @@ fun Notes(navController: NavHostController) {
                         .padding(top = 40.dp)
                         .clickable(
                             onClick = {
-                                navController.navigate("bsc_branches")
+                                Toast
+                                    .makeText(
+                                        context, "Available soon", Toast.LENGTH_SHORT
+                                    )
+                                    .show()
                             }
                         )
                 )
@@ -88,41 +88,9 @@ fun Notes(navController: NavHostController) {
                     fontSize = 12.sp,
                     textAlign = TextAlign.Center
 
-                    )
+                )
             }
         }
-//        item {
-//
-//            Column(
-//                modifier = Modifier.fillMaxSize(),
-//                horizontalAlignment = Alignment.CenterHorizontally
-//            ) {
-//                Image(
-//                    ImageBitmap.imageResource(id = R.drawable.bca1),
-//                    contentDescription = "",
-//                    modifier = Modifier
-//                        .width(100.dp)
-//                        .height(100.dp)
-//                        .padding(top = 40.dp)
-//                        .clickable(
-//                            onClick = {
-//                                Toast
-//                                    .makeText(
-//                                        context, "Available soon", Toast.LENGTH_SHORT
-//                                    )
-//                                    .show()
-//                            }
-//                        )
-//                )
-//
-//                Text(
-//                    "BCA",
-//                    fontSize = 12.sp,
-//                    textAlign = TextAlign.Center
-//
-//                    )
-//            }
-//        }
         item {
 
             Column(
@@ -153,7 +121,7 @@ fun Notes(navController: NavHostController) {
                     textAlign = TextAlign.Center
 
 
-                    )
+                )
             }
         }
 
@@ -164,7 +132,7 @@ fun Notes(navController: NavHostController) {
     ) {
 
         Text(
-            "NOTES",
+            "QUESTION BANK",
             fontSize = 20.sp,
             fontFamily = FontFamily.Monospace,
             fontWeight = FontWeight.Bold,
@@ -176,16 +144,10 @@ fun Notes(navController: NavHostController) {
             color = Color.Blue,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Serif,
-            modifier = Modifier.padding(start=3.dp)
+            modifier = Modifier.padding(start=3.dp,top=5.dp)
 
         )
 
 
     }
 }
-
-
-
-
-
-
