@@ -157,6 +157,41 @@ fun Notes(navController: NavHostController) {
             }
         }
 
+        item {
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(id =R.drawable.ba),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(top = 40.dp)
+                        .clickable(
+                            onClick = {
+                                Toast
+                                    .makeText(
+                                        context, "Available soon", Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                            }
+                        )
+                )
+
+                Text(
+                    "BA",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+
+
+                )
+            }
+        }
+
+
     }
     Column(
         modifier = Modifier.fillMaxSize(),

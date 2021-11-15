@@ -73,8 +73,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             Modifier.background(
                                 Brush.horizontalGradient(
                                     listOf(
+                                        MaterialTheme.colors.primaryVariant,
                                         MaterialTheme.colors.primary,
-                                        MaterialTheme.colors.primaryVariant
                                     )
                                 )
                             ),

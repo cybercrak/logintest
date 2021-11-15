@@ -2,6 +2,8 @@ package com.example.notesmanager
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.shape.CutCornerShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.Text
@@ -22,8 +24,9 @@ fun Bca_semselection(navController: NavHostController) {
         item{
             Card(onClick = {navController.navigate("underdev") },
                 elevation = 40.dp,
+                shape = CutCornerShape(bottomEnd = 30.dp),
             modifier = Modifier.fillMaxWidth()
-                .height(100.dp)
+                .height(200.dp)
                 .padding(20.dp)) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -40,8 +43,9 @@ fun Bca_semselection(navController: NavHostController) {
         item{
             Card(onClick = {navController.navigate("underdev")},
                 elevation = 40.dp,
+                shape = CutCornerShape(bottomEnd = 30.dp),
                 modifier = Modifier.fillMaxWidth()
-                    .height(100.dp)
+                    .height(200.dp)
                     .padding(20.dp)) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -58,8 +62,9 @@ fun Bca_semselection(navController: NavHostController) {
         item{
             Card(onClick = { navController.navigate("underdev")},
                 elevation = 40.dp,
+                shape = CutCornerShape(bottomEnd = 30.dp),
                 modifier = Modifier.fillMaxWidth()
-                    .height(100.dp)
+                    .height(200.dp)
                     .padding(20.dp)) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -77,8 +82,9 @@ fun Bca_semselection(navController: NavHostController) {
         item{
             Card(onClick = { navController.navigate("underdev")},
                 elevation = 40.dp,
+                shape = CutCornerShape(bottomEnd = 30.dp),
                 modifier = Modifier.fillMaxWidth()
-                    .height(100.dp)
+                    .height(200.dp)
                     .padding(20.dp)) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -96,8 +102,9 @@ fun Bca_semselection(navController: NavHostController) {
         item{
             Card(onClick = { navController.navigate("sem5qbank") },
                 elevation = 40.dp,
+                shape = CutCornerShape(bottomEnd = 30.dp),
                 modifier = Modifier.fillMaxWidth()
-                    .height(100.dp)
+                    .height(200.dp)
                     .padding(20.dp)) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -115,8 +122,9 @@ fun Bca_semselection(navController: NavHostController) {
         item{
             Card(onClick = {navController.navigate("underdev") },
                 elevation = 40.dp,
+                shape = CutCornerShape(bottomEnd = 30.dp),
                 modifier = Modifier.fillMaxWidth()
-                    .height(100.dp)
+                    .height(200.dp)
                     .padding(20.dp)) {
                 Box(
                     modifier = Modifier.fillMaxSize(),

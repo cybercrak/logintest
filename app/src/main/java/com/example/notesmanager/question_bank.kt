@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -125,6 +126,41 @@ fun qbank(navController: NavController){
             }
         }
 
+
+        item {
+
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Image(
+                    painter = painterResource(id =R.drawable.ba),
+                    contentDescription = "",
+                    modifier = Modifier
+                        .width(100.dp)
+                        .height(100.dp)
+                        .padding(top = 40.dp)
+                        .clickable(
+                            onClick = {
+                                Toast
+                                    .makeText(
+                                        context, "Available soon", Toast.LENGTH_SHORT
+                                    )
+                                    .show()
+                            }
+                        )
+                )
+
+                Text(
+                    "BA",
+                    fontSize = 12.sp,
+                    textAlign = TextAlign.Center
+
+
+                )
+            }
+        }
+
     }
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -141,7 +177,7 @@ fun qbank(navController: NavController){
         Text(
             "Select Department",
             fontSize = 15.sp,
-            color = Color.Blue,
+            color = MaterialTheme.colors.primary,
             fontWeight = FontWeight.Bold,
             fontFamily = FontFamily.Serif,
             modifier = Modifier.padding(start=3.dp,top=5.dp)

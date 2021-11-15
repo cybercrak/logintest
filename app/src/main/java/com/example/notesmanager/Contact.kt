@@ -109,7 +109,7 @@ fun Contact (navController: NavHostController) {
                             data = Uri.parse("mailto:nsarran37@gmail.com")
                         }
 
-                        intent.putExtra(EXTRA_SUBJECT,"Issue occured")
+                        intent.putExtra(Intent.EXTRA_SUBJECT,"Issue occured")
                         intent.setPackage("com.google.android.gm")
 
                         TextButton(
