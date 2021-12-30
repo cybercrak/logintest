@@ -66,13 +66,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.*
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.withStyle
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -119,7 +116,7 @@ fun Navigation(){
 
     NavHost(navController = navController,startDestination = "login"){
 
-        composable("signin"){ Signin(navController= navController)}
+    composable("signin"){ Signin(navController= navController)}
         composable("login"){ Login(navController= navController)}
         composable("Main"){ MainScreen(navController= navController)}
         composable("Calc"){ CalcScreen(navController= navController)}
@@ -130,6 +127,9 @@ fun Navigation(){
         composable("madunits") { MAD_units(navController = navController)}
         composable("madnotes_u1") { MAD_notes(navController = navController)}
         composable("madnotes_u2") { MAD_notesU2(navController = navController)}
+        composable("osunits") { OS_units(navController = navController)}
+        composable("osnotes_u1") { OS_notes(navController = navController)}
+        composable("osnotes_u2") { OS_notesU2(navController = navController)}
         composable("about"){About (navController = navController)}
         composable("setting"){Settings (navController = navController)}
         composable("contact"){Contact (navController = navController)}
@@ -372,7 +372,12 @@ item{
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text("Create Account", textAlign = TextAlign.Center,fontWeight = FontWeight.Bold)
+            Text("Create Account",
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                fontSize = 35.sp,
+                color = Color.Red,
+            )
         }
     }
 
@@ -394,6 +399,15 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+       item{
+           Text(
+               "WELCOME !",
+               fontSize = 35.sp,
+               textAlign = TextAlign.Start,
+               color = Color.Red,
+               fontWeight = FontWeight.Bold,
+               )
+       }
         item {
             val compositionResult: LottieCompositionResult = rememberLottieComposition(
                 spec = LottieCompositionSpec.RawRes(
@@ -469,7 +483,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                    CoroutineScope(Dispatchers.Main).launch {
                        try {
 
-                           if (email.isNotEmpty() && password.isNotEmpty()) {
+                           if(email.isNotEmpty() && password.isNotEmpty()) {
                                auth.signInWithEmailAndPassword(email, password).await()
                                withContext(Dispatchers.Main) {
                                    FancyToast.makeText(
@@ -530,7 +544,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                    buildAnnotatedString {  append("")
                        withStyle(
                            style = SpanStyle(
-                               color =Color.Blue,
+                               color =lightBlue,
 
                            )
                        ) {
@@ -579,7 +593,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
                         )
                 )
                 Text(
-                    "Percentage Calculator",
+                    "Marks Calculator",
                     fontSize = 12.sp,
                     textAlign = TextAlign.Center,
 

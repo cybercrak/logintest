@@ -41,13 +41,5 @@ fun update(navController: NavHostController){
         )
 
     }
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        TextButton(onClick = { }, enabled = false) {
-            Text("Checking for update")
-        }
-    }
+
     }

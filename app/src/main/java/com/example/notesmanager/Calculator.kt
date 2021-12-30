@@ -57,7 +57,7 @@ fun CalcScreen(navController: NavHostController) {
 
 
            Text(
-               "PERCENTAGE CALCULATOR",
+               "MARKS CALCULATOR",
                fontSize = 20.sp,
                fontFamily = FontFamily.Monospace,
                fontWeight = FontWeight.Bold,
@@ -482,20 +482,21 @@ fun CalcScreen(navController: NavHostController) {
         verticalAlignment = Alignment.Bottom,
     horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
-                mark4.toInt() + mark5.toInt() + mark6.toInt())
-        val percent = result / No_of_Sub.toInt()
 
         OutlinedButton(modifier = Modifier.padding(bottom = 30.dp),
             onClick = {
+                val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
+                        mark4.toInt() + mark5.toInt() + mark6.toInt())
+                val percent = result / No_of_Sub.toInt()
 
-                if (mark1.isEmpty() || mark2.isEmpty() || mark3.isEmpty() || mark4.isEmpty() || mark5.isEmpty() || mark6.isEmpty()
+                if (mark1.isEmpty() || mark2.isEmpty() || mark3.isEmpty() ||
+                    mark4.isEmpty() || mark5.isEmpty() || mark6.isEmpty()
                 ) {
                     FancyToast.makeText(context, "Enter 0 in empty fields",
                         FancyToast.LENGTH_LONG,
                         FancyToast.INFO,false).show()
                 }
-                else if (No_of_Sub < 1.toString() || No_of_Sub > 6.toString()) {
+                else if (No_of_Sub.toInt() < 1 || No_of_Sub.toInt() > 6) {
                         FancyToast.makeText(
                             context,
                             "Enter valid number of subjects",
@@ -526,7 +527,7 @@ fun CalcScreen(navController: NavHostController) {
                     FancyToast.LENGTH_LONG,
                     FancyToast.INFO,false).show()
             }
-            else if (No_of_Sub < 1.toString() || No_of_Sub > 6.toString()) {
+            else if (No_of_Sub.toInt() < 1 || No_of_Sub.toInt() > 6) {
                 FancyToast.makeText(
                     context,
                     "Enter valid number of subjects",

@@ -810,7 +810,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("osunits") }
                     ) {Box(
                         Modifier.background(
                             Brush.horizontalGradient(
