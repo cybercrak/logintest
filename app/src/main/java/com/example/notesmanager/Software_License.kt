@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyVerticalGrid
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -44,13 +45,14 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 30.dp),
+                    .padding(top = 30.dp,bottom = 30.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
                 Text(
                     text = "Powered by JetpackCompose",
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = MaterialTheme.colors.primary
                 )
             }
         }
@@ -58,7 +60,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -76,7 +78,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -94,7 +96,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -112,7 +114,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -130,7 +132,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -148,7 +150,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -166,7 +168,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -184,7 +186,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -202,7 +204,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(
@@ -220,7 +222,7 @@ fun Software_License(navController: NavHostController) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(top = 7.dp, end = 7.dp),
+                    .padding(top = 15.dp, end = 7.dp),
                 horizontalAlignment = Alignment.Start,
             ) {
                 Text(

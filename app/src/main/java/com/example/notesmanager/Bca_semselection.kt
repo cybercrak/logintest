@@ -32,14 +32,25 @@ fun Bca_semselection(navController: NavHostController) {
                 .height(200.dp)
                 .padding(20.dp)) {
                 Box(
+                    Modifier.background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colors.primary,
+                                MaterialTheme.colors.primaryVariant
+                            )
+                        )
+                    )
+                ) {
+                Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        "Semester 1",
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
+                        Text(
+                            "Semester 1",
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
         }
@@ -51,14 +62,26 @@ fun Bca_semselection(navController: NavHostController) {
                     .height(200.dp)
                     .padding(20.dp)) {
                 Box(
+                    Modifier.background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colors.primary,
+                                MaterialTheme.colors.primaryVariant
+                            )
+                        )
+                    )
+                ) {
+                Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        "Semester 2",
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
+
+                        Text(
+                            "Semester 2",
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
         }
@@ -70,14 +93,26 @@ fun Bca_semselection(navController: NavHostController) {
                     .height(200.dp)
                     .padding(20.dp)) {
                 Box(
+                    Modifier.background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colors.primary,
+                                MaterialTheme.colors.primaryVariant
+                            )
+                        )
+                    )
+                ) {
+                Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        "Semester 3",
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
+
+                        Text(
+                            "Semester 3",
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
         }
@@ -90,14 +125,26 @@ fun Bca_semselection(navController: NavHostController) {
                     .height(200.dp)
                     .padding(20.dp)) {
                 Box(
+                    Modifier.background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colors.primary,
+                                MaterialTheme.colors.primaryVariant
+                            )
+                        )
+                    )
+                ) {
+                Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(
-                        "Semester 4",
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
+
+                        Text(
+                            "Semester 4",
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        )
+                    }
                 }
             }
         }
@@ -110,29 +157,54 @@ fun Bca_semselection(navController: NavHostController) {
                     .height(200.dp)
                     .padding(20.dp)) {
                 Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        "Semester 5",
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
+                    Modifier.background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colors.primary,
+                                MaterialTheme.colors.primaryVariant
+                            )
+                        )
                     )
-                }
-            }
-        }
-
-        item{
-            Card(onClick = {navController.navigate("underdev") },
-                elevation = 40.dp,
-                shape = CutCornerShape(bottomEnd = 30.dp),
-                modifier = Modifier.fillMaxWidth()
-                    .height(200.dp)
-                    .padding(20.dp)) {
+                ) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
+
+                        Text(
+                            "Semester 5",
+                            fontWeight = FontWeight.Bold,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+        }
+
+        item {
+            Card(
+                onClick = { navController.navigate("underdev") },
+                elevation = 40.dp,
+                shape = CutCornerShape(bottomEnd = 30.dp),
+                modifier = Modifier.fillMaxWidth()
+                    .height(200.dp)
+                    .padding(20.dp)
+            ) {
+                Box(
+                    Modifier.background(
+                        Brush.verticalGradient(
+                            listOf(
+                                MaterialTheme.colors.primary,
+                                MaterialTheme.colors.primaryVariant
+                            )
+                        )
+                    )
+                ) {
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+
 
                         Text(
                             "Semester 6",
@@ -140,6 +212,7 @@ fun Bca_semselection(navController: NavHostController) {
                             textAlign = TextAlign.Center
                         )
                     }
+                }
             }
         }
 

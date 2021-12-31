@@ -27,6 +27,7 @@ import com.airbnb.lottie.compose.*
 import com.example.notesmanager.ui.theme.lightBlue
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.shashank.sony.fancytoastlib.FancyToast
 
 //import com.google.firebase.ktx.Firebase
 
@@ -44,7 +45,7 @@ fun Upload (navController: NavHostController) {
     ) {
        item{
            Text(
-               "UPLOAD NOTES !",
+               "UPLOAD NOTES ",
                fontSize = 20.sp,
                textAlign = TextAlign.Center,
                fontWeight = FontWeight.Bold,
@@ -90,8 +91,35 @@ fun Upload (navController: NavHostController) {
            IconButton(
                onClick = {
                    val notes = Uploadsbackend(subname, link)
-                   Firebase.firestore.collection("notes").add(notes)
-                   Toast.makeText(context, "Uploaded", Toast.LENGTH_SHORT).show()
+                   try {
+                       if(subname.isEmpty() || link.isEmpty()){
+                           FancyToast.makeText(
+                               context,
+                               "Fields should not be empty",
+                               FancyToast.LENGTH_LONG,
+                               FancyToast.WARNING,
+                               false
+                           ).show()
+                       }else {
+                           Firebase.firestore.collection("notes").add(notes)
+                           FancyToast.makeText(
+                               context,
+                               "Upload Succeed... Your notes will be authenticated and uploaded soon",
+                               FancyToast.LENGTH_LONG,
+                               FancyToast.SUCCESS,
+                               true
+                           ).show()
+                       }
+                   }catch(e: Exception){
+                       FancyToast.makeText(
+                           context,
+                           "No Internet",
+                           FancyToast.LENGTH_LONG,
+                           FancyToast.ERROR,
+                           false
+                       ).show()
+                   }
+
                },
                modifier = Modifier
                    .padding(vertical = 10.dp)
