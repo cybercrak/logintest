@@ -7,11 +7,13 @@ import android.content.Context
 import android.content.Context.CONNECTIVITY_SERVICE
 import android.content.Intent
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.webkit.*
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -93,6 +95,7 @@ class MainActivity : ComponentActivity() {
     @ExperimentalFoundationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+       // window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
         setContent {
             NotesManagerTheme {
                 // A surface container using the 'background' color from the theme
@@ -136,12 +139,15 @@ fun Navigation(){
         composable("bsc_branches"){ Bsc_branches(navController= navController)}
         composable("underdev"){ Under_development(navController= navController)}
         composable("update"){ update(navController= navController)}
+        composable("loading"){ Loading (navController= navController)}
         composable("qbank"){ qbank(navController= navController)}
         composable("sem5qbank"){ sem5_Qbank(navController= navController)}
         composable("madqbank"){ Mad_qbank(navController= navController)}
         composable("osqbank"){ Os_qbank(navController= navController)}
         composable("wix"){ Wix(navController= navController)}
+        //composable("inside_about"){ Inside_About(navController= navController)}
         composable("softwarelicenses"){ Software_License(navController= navController)}
+        composable("aboutapp"){ about_app(navController= navController)}
 
         // composable("fee"){ Fee(navController= navController)}
        // composable("result"){ Result(navController= navController)}
@@ -313,21 +319,27 @@ item{
                                 ).show()
 
                             }
-                            else{
+                            else if (password != cpassword){
                                 FancyToast.makeText(
-                                    context, "Check your INTERNET connection", FancyToast.LENGTH_SHORT,
+                                    context, "Password mismatch", FancyToast.LENGTH_SHORT,
                                     FancyToast.ERROR,false
                                 ).show()
 
                             }
+                            else{
+                                withContext(Dispatchers.Main) {
+                                    FancyToast.makeText(
+                                        context, "You are already a user..go to login", FancyToast.LENGTH_SHORT,
+                                        FancyToast.CONFUSING,R.drawable.person ,false
+                                    ).show()
+                                }
+                            }
 
                         } catch (e: Exception) {
-                            withContext(Dispatchers.Main) {
-                                FancyToast.makeText(
-                                    context, "You are already a user..go to login", FancyToast.LENGTH_SHORT,
-                                    FancyToast.CONFUSING,R.drawable.person ,false
-                                ).show()
-                            }
+                            FancyToast.makeText(
+                                context, "Check your INTERNET connection", FancyToast.LENGTH_SHORT,
+                                FancyToast.ERROR,false
+                            ).show()
                         }
                     }
                 }, shape = RoundedCornerShape(20)
@@ -504,6 +516,7 @@ private fun Login(navController: NavHostController/*,viewModel: LoginScreenViewM
 //                               val activeNetwork: NetworkInfo? = connectivityManager.activeNetworkInfo
 //                               val isConnected: Boolean = activeNetwork?.isConnectedOrConnecting ==true
 //                               if (activeNetwork = null && activeNetwork.isConnected()) {
+    
                                    FancyToast.makeText(
                                        context,
                                        "Check your INTERNET connection",

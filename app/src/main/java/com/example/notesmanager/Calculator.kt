@@ -135,7 +135,7 @@ fun CalcScreen(navController: NavHostController) {
                            .height(50.dp),
                        value = mark1,
                        maxLines = 1,
-                       label = { Text("Mark",color = Color.Black) },
+                       label = { Text("Mark", color = Color.Black) },
                        textStyle = TextStyle(fontSize = (12.sp), color = Purple),
                        singleLine = true,
                        onValueChange = { mark1 = it },
@@ -194,7 +194,7 @@ fun CalcScreen(navController: NavHostController) {
                            .height(50.dp),
                        value = mark2,
                        maxLines = 1,
-                       label = { Text("Mark",color = Color.Black) },
+                       label = { Text("Mark", color = Color.Black) },
                        textStyle = TextStyle(fontSize = (12.sp), color = Purple),
                        singleLine = true,
                        onValueChange = { mark2 = it },
@@ -255,8 +255,8 @@ fun CalcScreen(navController: NavHostController) {
                            .height(50.dp),
                        value = mark3,
                        maxLines = 1,
-                       label = { Text("Mark",color = Color.Black) },
-                       textStyle = TextStyle(fontSize = (12.sp), color =Purple),
+                       label = { Text("Mark", color = Color.Black) },
+                       textStyle = TextStyle(fontSize = (12.sp), color = Purple),
                        singleLine = true,
                        onValueChange = { mark3 = it },
                        colors = TextFieldDefaults.textFieldColors(
@@ -315,7 +315,7 @@ fun CalcScreen(navController: NavHostController) {
                            .height(50.dp),
                        value = mark4,
                        maxLines = 1,
-                       label = { Text("Mark",color = Color.Black) },
+                       label = { Text("Mark", color = Color.Black) },
                        textStyle = TextStyle(fontSize = (12.sp), color = Purple),
                        singleLine = true,
                        onValueChange = { mark4 = it },
@@ -375,7 +375,7 @@ fun CalcScreen(navController: NavHostController) {
                            .height(50.dp),
                        value = mark5,
                        maxLines = 1,
-                       label = { Text("Mark",color = Color.Black) },
+                       label = { Text("Mark", color = Color.Black) },
                        textStyle = TextStyle(fontSize = (12.sp), color = Purple),
                        singleLine = true,
                        onValueChange = { mark5 = it },
@@ -433,7 +433,7 @@ fun CalcScreen(navController: NavHostController) {
                            .height(50.dp),
                        value = mark6,
                        maxLines = 1,
-                       label = { Text("Mark",color = Color.Black) },
+                       label = { Text("Mark", color = Color.Black) },
                        textStyle = TextStyle(fontSize = (12.sp), color = Purple),
                        singleLine = true,
                        onValueChange = { mark6 = it },
@@ -452,29 +452,32 @@ fun CalcScreen(navController: NavHostController) {
            }
        }
 
-       Column(
-           modifier = Modifier.fillMaxSize(),
-           verticalArrangement = Arrangement.Center,
-           horizontalAlignment = Alignment.CenterHorizontally
-       ) {
+                Column(
+                       modifier = Modifier.fillMaxSize(),
+                       verticalArrangement = Arrangement.Bottom,
+                       horizontalAlignment = Alignment.CenterHorizontally
+                   ) {
 
-           TextField(
-               value = No_of_Sub,
-               maxLines = 1,
-               singleLine = true,
-               onValueChange = { No_of_Sub = it },
-               label = { Text("Number of scored subjects") },
-               colors = TextFieldDefaults . textFieldColors (
-                   focusedIndicatorColor = DarkBlue,
-                   unfocusedIndicatorColor = Color.Red
-               ),
-               textStyle = TextStyle(fontSize = (15.sp)),
-               keyboardOptions = KeyboardOptions(
-                   keyboardType = KeyboardType.Number
-               )
-           )
+                       TextField(modifier = Modifier.padding(bottom = 150.dp),
+                           value = No_of_Sub,
+                           maxLines = 1,
+                           singleLine = true,
+                           onValueChange = { No_of_Sub = it },
+                           label = { Text("Number of scored subjects") },
+                           colors = TextFieldDefaults.textFieldColors(
+                               focusedIndicatorColor = DarkBlue,
+                               unfocusedIndicatorColor = Color.Red
+                           ),
+                           textStyle = TextStyle(fontSize = (15.sp)),
+                           keyboardOptions = KeyboardOptions(
+                               keyboardType = KeyboardType.Number
+                           )
+                       )
 
-       }
+                   }
+
+
+
 
 
     Row(
@@ -485,18 +488,20 @@ fun CalcScreen(navController: NavHostController) {
 
         OutlinedButton(modifier = Modifier.padding(bottom = 30.dp),
             onClick = {
-                val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
-                        mark4.toInt() + mark5.toInt() + mark6.toInt())
-                val percent = result / No_of_Sub.toInt()
 
-                if (mark1.isEmpty() || mark2.isEmpty() || mark3.isEmpty() ||
-                    mark4.isEmpty() || mark5.isEmpty() || mark6.isEmpty()
-                ) {
-                    FancyToast.makeText(context, "Enter 0 in empty fields",
-                        FancyToast.LENGTH_LONG,
-                        FancyToast.INFO,false).show()
-                }
-                else if (No_of_Sub.toInt() < 1 || No_of_Sub.toInt() > 6) {
+                try {
+                    val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
+                            mark4.toInt() + mark5.toInt() + mark6.toInt())
+                    val percent = result / No_of_Sub.toInt()
+
+                    if (mark1.isEmpty() || mark2.isEmpty() || mark3.isEmpty() ||
+                        mark4.isEmpty() || mark5.isEmpty() || mark6.isEmpty()
+                    ) {
+                        FancyToast.makeText(context, "Enter 0 in empty fields",
+                            FancyToast.LENGTH_LONG,
+                            FancyToast.INFO,false).show()
+                    }
+                    else if (No_of_Sub.toInt() < 1 || No_of_Sub.toInt() > 6) {
                         FancyToast.makeText(
                             context,
                             "Enter valid number of subjects",
@@ -505,22 +510,29 @@ fun CalcScreen(navController: NavHostController) {
                         ).show()
                     }
 
-                else{
-                FancyToast.makeText(context, "Your Percent is $percent",
-                    FancyToast.LENGTH_SHORT, FancyToast.INFO,R.drawable.cup,false
-                ).show()
-            }
+                    else{
+                        FancyToast.makeText(context, "Your Percent is $percent",
+                            FancyToast.LENGTH_SHORT, FancyToast.INFO,R.drawable.cup,false
+                        ).show()
+                    }
+                } catch (e: Exception) {
+                    FancyToast.makeText(context, "Enter 0 in empty fields",
+                        FancyToast.LENGTH_LONG,
+                        FancyToast.ERROR,false).show()
+                }
         },           ) {
             Text("Percent",color = Color.Red)}
 
         OutlinedButton(modifier = Modifier.padding(bottom = 30.dp), onClick = {
-            val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
-                    mark4.toInt() + mark5.toInt() + mark6.toInt())
-            val percent = result / No_of_Sub.toInt()
-            val const = 9.5
-            val cgpa = percent/const
 
-            if (mark1.isEmpty() || mark2.isEmpty() || mark3.isEmpty() || mark4.isEmpty() ||
+            try{
+                val result = (mark1.toInt() + mark2.toInt() +mark3.toInt() +
+                        mark4.toInt() + mark5.toInt() + mark6.toInt())
+                val percent = result / No_of_Sub.toInt()
+                val const = 9.5
+                val cgpa = percent/const
+
+                if (mark1.isEmpty() || mark2.isEmpty() || mark3.isEmpty() || mark4.isEmpty() ||
                 mark5.isEmpty() || mark6.isEmpty()
             ) {
                 FancyToast.makeText(context, "Enter 0 in empty fields",
@@ -540,7 +552,12 @@ fun CalcScreen(navController: NavHostController) {
                 FancyToast.makeText(context, "Your CGPA is $cgpa",
                     FancyToast.LENGTH_SHORT, FancyToast.INFO,R.drawable.cup,false
                 ).show()
+            } }catch(e: Exception){
+                FancyToast.makeText(context, "Enter 0 in empty fields",
+                    FancyToast.LENGTH_LONG,
+                    FancyToast.INFO,false).show()
             }
+
         },           ) {
             Text("CGPA",color = Color.Red)}
 

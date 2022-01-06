@@ -67,155 +67,281 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
                                 Brush.horizontalGradient(
                                     listOf(
                                         MaterialTheme.colors.primaryVariant,
-                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primary
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.tamil_2),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Tamil-I",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
-                item {
-                    Card(
-                        modifier = Modifier
-                            .width(200.dp)
-                            .height(200.dp)
-                            .padding(10.dp),
-                        elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Box(
-                            Modifier.background(
-                                Brush.horizontalGradient(
-                                    listOf(
-                                        MaterialTheme.colors.primary,
-                                        MaterialTheme.colors.primaryVariant
-                                    )
-                                )
-                            ),
-                        ) {
-                            Text(
-                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                            )
-                        }
-                    }
-                }
-                item {
-                    Card(
-                        modifier = Modifier
-                            .width(200.dp)
-                            .height(200.dp)
-                            .padding(10.dp),
-                        elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Box(
-                            Modifier.background(
-                                Brush.horizontalGradient(
-                                    listOf(
-                                        MaterialTheme.colors.primary,
-                                        MaterialTheme.colors.primaryVariant
-                                    )
-                                )
-                            ),
-                        ) {
-                            Text(
-                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                            )
-                        }
-                    }
-                }
-                item {
-                    Card(
-                        modifier = Modifier
-                            .width(200.dp)
-                            .height(200.dp)
-                            .padding(10.dp),
-                        elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Box(
-                            Modifier.background(
-                                Brush.horizontalGradient(
-                                    listOf(
-                                        MaterialTheme.colors.primary,
-                                        MaterialTheme.colors.primaryVariant
-                                    )
-                                )
-                            ),
-                        ) {
 
-                            Text(
-                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                            )
-                        }
-                    }
-                }
-                item {
-                    Card(
-                        modifier = Modifier
-                            .width(200.dp)
-                            .height(200.dp)
-                            .padding(10.dp),
-                        elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Box(
-                            Modifier.background(
-                                Brush.horizontalGradient(
-                                    listOf(
-                                        MaterialTheme.colors.primary,
-                                        MaterialTheme.colors.primaryVariant
-                                    )
-                                )
-                            ),
-                        ) {
-                            Text(
-                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                            )
-                        }
-                    }
-                }
-                item {
-                    Card(
-                        modifier = Modifier
-                            .width(200.dp)
-                            .height(200.dp)
-                            .padding(10.dp),
-                        elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
-                    ) {
-                        Box(
-                            Modifier.background(
-                                Brush.horizontalGradient(
-                                    listOf(
-                                        MaterialTheme.colors.primary,
-                                        MaterialTheme.colors.primaryVariant
-                                    )
-                                )
-                            ),
-                        ) {
-                            Text(
-                                "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
-                            )
-                        }
 
+                item {
+                    Card(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(10.dp),
+                        elevation = 20.dp,
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
+                    ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.english_1),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "English-I",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+                item {
+                    Card(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(10.dp),
+                        elevation = 20.dp,
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
+                    ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.dfco),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "DFCO",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+                item {
+                    Card(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(10.dp),
+                        elevation = 20.dp,
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
+                    ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.c_program),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "C programming",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+                item {
+                    Card(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(10.dp),
+                        elevation = 20.dp,
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
+                    ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.accounts),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Business Accounts",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
+                    }
+                }
+                item {
+                    Card(
+                        modifier = Modifier
+                            .width(200.dp)
+                            .height(200.dp)
+                            .padding(10.dp),
+                        elevation = 20.dp,
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
+                    ) {
+                        Box(
+                            Modifier.background(
+                                Brush.horizontalGradient(
+                                    listOf(
+                                        MaterialTheme.colors.primary,
+                                        MaterialTheme.colors.primaryVariant
+                                    )
+                                )
+                            )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.value_education),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Value Education",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -251,7 +377,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -261,12 +388,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.tamil_2),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Tamil-II",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -277,7 +424,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -287,12 +435,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.english_2),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "English-II",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -303,7 +471,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -313,12 +482,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.nm),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "NM & statistics",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -329,7 +518,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -339,12 +529,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.c__),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "C++",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -355,7 +565,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -365,12 +576,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.dsa),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Data Structures(DSA)",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -381,8 +612,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
-
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -392,17 +623,35 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-
-                            Text(
-                                "sub 6", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.evs),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "EVS",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
-
 
             }
 
@@ -439,7 +688,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -449,12 +699,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.java_icon),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Java Programming",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -465,7 +735,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -475,12 +746,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.or_1),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Operation Research",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -491,7 +782,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -501,12 +793,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.mobile_phone_settings),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Mobile servicing(OE)",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -517,7 +829,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -527,12 +840,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.relational_database),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "RDBMS",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -543,7 +876,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -553,12 +887,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.data_mining_2),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Data Mining",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -569,7 +923,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                      //  onClick = { navController.navigate("loading") }
 
                     ) {
                         Box(
@@ -625,7 +980,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -635,12 +991,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 1", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.python),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Python programming",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -651,7 +1027,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -661,12 +1038,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 2", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.softwareng),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Software Engineering",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 14.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -677,7 +1074,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -687,12 +1085,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 3", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.artificial_intelligence_4),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "AI",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -703,7 +1121,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -713,12 +1132,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 4", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.marketing_marketing),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Marketing Management",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -729,7 +1168,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        onClick = { navController.navigate("loading") }
                     ) {
                         Box(
                             Modifier.background(
@@ -739,12 +1179,32 @@ fun Bca_yearselection(navController: NavHostController) {
                                         MaterialTheme.colors.primaryVariant
                                     )
                                 )
-                            ),
-                        ) {
-                            Text(
-                                "sub 5", textAlign = TextAlign.Center, fontWeight = FontWeight.Bold,
-                                fontSize = 30.sp, modifier = Modifier.padding(10.dp)
                             )
+                        ) {
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Image(
+                                    painter = painterResource(id = R.drawable.computer_networks),
+                                    contentDescription = "",
+                                    modifier = Modifier
+                                        .width(100.dp)
+                                        .height(100.dp)
+                                )
+                            }
+                            Box(
+                                modifier = Modifier.fillMaxSize(),
+                                contentAlignment = Alignment.BottomCenter
+                            ) {
+                                Text(
+                                    "Computer Networks",
+                                    textAlign = TextAlign.Center,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 15.sp,
+                                    modifier = Modifier.padding(10.dp)
+                                )
+                            }
                         }
                     }
                 }
@@ -755,7 +1215,8 @@ fun Bca_yearselection(navController: NavHostController) {
                             .height(200.dp)
                             .padding(10.dp),
                         elevation = 20.dp,
-                        shape = RoundedCornerShape(10.dp)
+                        shape = RoundedCornerShape(10.dp),
+                        //onClick = { navController.navigate("loading") }
 
                     ) {
                         Box(

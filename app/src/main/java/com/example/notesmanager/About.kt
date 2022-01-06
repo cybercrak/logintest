@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.PermDeviceInformation
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.runtime.Composable
@@ -82,7 +83,7 @@ fun About(navController: NavHostController) {
             .padding(top = 50.dp, end = 10.dp),
 
         ) {
-        val images = (0..7).toList()
+        val images = (0..4).toList()
         LazyVerticalGrid(
             cells = GridCells.Fixed(2),
             contentPadding = PaddingValues(15.dp)
@@ -143,6 +144,38 @@ fun About(navController: NavHostController) {
                         ) {
                             Text(
                                 "Software licences",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp,
+                                color = MaterialTheme.colors.onBackground
+                            )
+                        }
+
+                    }
+                }
+            }
+
+            item {
+                Row(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(30.dp),
+                    verticalAlignment = Alignment.CenterVertically
+
+                ) {
+
+                    Icon(
+                        Icons.Outlined.Info,
+                        "info",
+                        tint = MaterialTheme.colors.primary
+                    )
+                    Column() {
+                        TextButton(
+                            onClick = {
+                                navController.navigate("aboutapp")
+                            }
+                        ) {
+                            Text(
+                                "About application",
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 14.sp,
                                 color = MaterialTheme.colors.onBackground
