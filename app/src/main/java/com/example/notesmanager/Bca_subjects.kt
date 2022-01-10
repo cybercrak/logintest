@@ -85,7 +85,7 @@ fun Bca_yearselection(navController: NavHostController) {
                                 contentAlignment = Alignment.Center
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.tamil_2),
+                                    painter = painterResource(id = R.drawable.tamil1),
                                     contentDescription = "",
                                     modifier = Modifier
                                         .width(100.dp)
@@ -395,7 +395,7 @@ fun Bca_yearselection(navController: NavHostController) {
                                 contentAlignment = Alignment.Center
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.tamil_2),
+                                    painter = painterResource(id = R.drawable.tamil1),
                                     contentDescription = "",
                                     modifier = Modifier
                                         .width(100.dp)
@@ -630,7 +630,7 @@ fun Bca_yearselection(navController: NavHostController) {
                                 contentAlignment = Alignment.Center
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.evs),
+                                    painter = painterResource(id = R.drawable.environmentstudies),
                                     contentDescription = "",
                                     modifier = Modifier
                                         .width(100.dp)
@@ -1045,7 +1045,7 @@ fun Bca_yearselection(navController: NavHostController) {
                                 contentAlignment = Alignment.Center
                             ) {
                                 Image(
-                                    painter = painterResource(id = R.drawable.softwareng),
+                                    painter = painterResource(id = R.drawable.se),
                                     contentDescription = "",
                                     modifier = Modifier
                                         .width(100.dp)
